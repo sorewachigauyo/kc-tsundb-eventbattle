@@ -1,0 +1,6 @@
+/__pycache__
+/.pytest_cache
+/tests/__pycache__
+/.vscode
+/battle/__pycache__
+/objects/__pycache__
