@@ -38,8 +38,11 @@ class Ship:
         """
         return self.stype == STYPE.SS or self.stype == STYPE.SSV
     
-    def fetch_equipment_total_stats(self, stat_name, use_visible_bonus = False, included_types = None, included_ids = None, excluded_types = None, excluded_ids = None):
+    def fetch_equipment_total_stats(self, stat_name: str, use_visible_bonus = False, included_types = None,
+                                          included_ids = None, excluded_types = None, excluded_ids = None,
+                                          return_visible_bonus_only=False):
         num = 0
+        num2 = 0
         for equip_id in self.equip:
 
             if included_ids:
@@ -63,7 +66,9 @@ class Ship:
             num += master.get("api_" + stat_name)
         if use_visible_bonus and self.side != SIDE.ENEMY:
             r = calculate_bonus_gear_stats(self)
-            num += r.get(stat_name, 0)
+            num2 += r.get(stat_name, 0)
 
-        return num
+        if return_visible_bonus_only:
+            return num2
+        return num + num2
 

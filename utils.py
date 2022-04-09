@@ -28,10 +28,10 @@ with open("./data/KC3RemodelDB.json", encoding="utf-8") as r:
 with open("./data/idTL.json", encoding="utf-8") as r:
     id_tl = json.load(r)
 
-def fetch_ship_master(ship_id: int) -> dict[str, int]:
+def fetch_ship_master(ship_id: int) -> "dict[str, int]":
     return ship_master_lookup[ship_id]
 
-def fetch_equip_master(equip_id: int) -> dict[str, int]:
+def fetch_equip_master(equip_id: int) -> "dict[str, int]":
     return equip_master_lookup[equip_id]
 
 def find_ship_origin(ship_id: int) -> int:

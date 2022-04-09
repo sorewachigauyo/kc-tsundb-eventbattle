@@ -36,8 +36,8 @@ class PlayerShip(Ship):
         fuel_max = master["api_fuel_max"]
         ammo_max = master["api_bull_max"]
 
-        self.fuel = min(int(self.fuel * amount), fuel_max)
-        self.ammo = min(int(self.ammo * amount), ammo_max)
+        self.fuel = min(int(self.fuel + fuel_max * amount), fuel_max)
+        self.ammo = min(int(self.ammo + ammo_max * amount), ammo_max)
 
     def uses_carrier_shelling(self):
         """Checks if the ship uses carrier shelling.

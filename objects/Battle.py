@@ -1,3 +1,5 @@
+from functools import reduce
+from utils import count_equip
 from .Fleet import PlayerFleet, EnemyFleet, FriendFleet
 from .static import FLEETTYPE
 from .Ship import EnemyShip, PlayerShip
@@ -5,11 +7,11 @@ from .Ship import EnemyShip, PlayerShip
 class Battle:
     """Class representing a battle.
     """
-    def __init__(self, apiname, rawapi, playerformation, resupplyused, fleet, **kwargs):
+    def __init__(self, apiname: str, rawapi: dict, playerformation: int, resupplyused: bool, fleet: dict, **kwargs):
         self.battletype = apiname
         self.engagement = rawapi["api_formation"][2]
 
-        ecombined = "api_ship_ke_combined" in rawapi
+        ecombined = "api_ship_ke_combined" in rawapi.keys()
         fcombined = fleet["fleettype"]
         self.fship_mapping: dict[int, PlayerShip] = {}
         self.eship_mapping: dict[int, EnemyShip] = {}
@@ -49,14 +51,9 @@ class Battle:
         if resupplyused:
             self.resupply_fleet(fcombined != FLEETTYPE.SINGLE)
 
-    def resupply_fleet(self, combined):
-        num = 1.15 if combined else 1.25
-        f = lambda x: PlayerShip.resupply(x, num)
+    def resupply_fleet(self, combined: bool):
+        num, numc = 0.125, 0.025 if combined else 0.11, 0.14
+        rcount = reduce(lambda x, y: x + count_equip(y.equip, 146), self.fship_mapping.values(), 0)
+
+        f = lambda x: PlayerShip.resupply(x, num * min(rcount, 3) + numc)
         map(f, self.fship_mapping.values())
-
-
-        
-
-
-        
-
