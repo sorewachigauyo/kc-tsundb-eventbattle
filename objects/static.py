@@ -17,8 +17,8 @@ class FLEETORDER:
 class FORMATION:
     LINEAHEAD = 1
     DOUBLELINE = 2
-    ECHELON = 3
-    DIAMOND = 4
+    DIAMOND = 3
+    ECHELON = 4
     LINEABREAST = 5
     VANGUARD = 6
     CF1 = 11
@@ -126,7 +126,7 @@ class BATTLEORDER:
                            PHASE.SHELLING2, PHASE.CLOSING_TORPEDO, PHASE.SHELLING3]
 
 
-    def get(x):
+    def get(x: str):
         return o[x]
 
 

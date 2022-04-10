@@ -123,21 +123,3 @@ def fetch_ship_translation(ship_id: int, lang: str = "en") -> str:
 
 def fetch_equip_translation(equip_id: int, lang: str ="en") -> str:
     return id_tl["equip"][str(equip_id)][lang]
-
-def count_equip(equip_list: List, equip_id: Union[int, List]):
-    if isinstance(equip_id, int):
-        return reduce(lambda x, y: x + (y == equip_id), equip_list, 0)
-    elif isinstance(equip_id, list):
-        return reduce(lambda x, y: x + (y in equip_id), equip_list, 0)
-
-def count_equip_by_type(equip_list: List, equip_type: Union[int, List], type_filter: int):
-    if isinstance(equip_type, int):
-        return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] == equip_type), equip_list, 0)
-    elif isinstance(equip_type, list):
-        return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] in equip_type), equip_list, 0)
-
-def has_equip_type(equip_list: List, equip_type: Union[int, List], type_filter: int):
-    if isinstance(equip_type, int):
-        return next((eq_id for eq_id in equip_list if fetch_equip_master(eq_id)["api_type"][type_filter] == equip_type), False)
-    elif isinstance(equip_type, list):
-        return next((eq_id for eq_id in equip_list if fetch_equip_master(eq_id)["api_type"][type_filter] in equip_type), False)

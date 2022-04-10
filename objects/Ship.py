@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from functools import reduce
+from typing import List, Union
 from .static import SIDE, STYPE
 from .BaseShip import Ship
 from utils import fetch_equip_master, fetch_ship_master
@@ -17,6 +19,7 @@ class PlayerShip(Ship):
         self.lvl = ship_obj["lvl"]
         self.morale = ship_obj["morale"]
         self.equip = ship_obj["equips"]
+        self.visible_stats = ship_obj["stats"]
         self.proficiency = ship_obj["proficiency"]
         self.stars = ship_obj["improvements"]
         self.slot = ship_obj["slots"]
@@ -60,6 +63,31 @@ class PlayerShip(Ship):
             return True
         
         return False
+
+    def count_equip(self, equip_id: Union[int, List[int]]):
+        if isinstance(equip_id, int):
+            return reduce(lambda x, y: x + (y == equip_id), self.equip, 0)
+        elif isinstance(equip_id, list):
+            return reduce(lambda x, y: x + (y in equip_id), self.equip, 0)
+
+    def count_equip_by_type(self, equip_type: Union[int, List[int]], type_filter: int):
+        if isinstance(equip_type, int):
+            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] == equip_type), self.equip, 0)
+        elif isinstance(equip_type, list):
+            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] in equip_type), self.equip, 0)
+
+    def has_equip(self, equip_id: Union[int, List[int]]):
+        if isinstance(equip_id, int):
+            return equip_id in self.equip
+        elif isinstance(equip_id, list):
+            return next((eq_id for eq_id in self.equip if eq_id in equip_id), False)
+
+    def has_equip_type(self, equip_type: Union[int, List[int]], type_filter: int):
+        if isinstance(equip_type, int):
+            return next((eq_id for eq_id in self.equip if fetch_equip_master(eq_id)["api_type"][type_filter] == equip_type), False)
+        elif isinstance(equip_type, list):
+            return next((eq_id for eq_id in self.equip if fetch_equip_master(eq_id)["api_type"][type_filter] in equip_type), False)
+
 
 @dataclass()
 class EnemyShip(Ship):
