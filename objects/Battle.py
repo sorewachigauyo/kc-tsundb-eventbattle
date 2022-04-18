@@ -1,8 +1,7 @@
 from functools import reduce
-from utils import count_equip
-from .Fleet import PlayerFleet, EnemyFleet, FriendFleet
-from .static import BATTLETYPE, FLEETTYPE
-from .Ship import EnemyShip, PlayerShip
+from objects.Fleet import PlayerFleet, EnemyFleet, FriendFleet
+from objects.static import BATTLETYPE, FLEETTYPE
+from objects.Ship import EnemyShip, PlayerShip
 
 class Battle:
     """Class representing a battle.
@@ -19,13 +18,13 @@ class Battle:
         self.player_fleet = PlayerFleet(playerformation, fleet["fleet1"], rawapi["api_fParam"], rawapi["api_f_nowhps"],
                                        rawapi["api_f_maxhps"], self.fcombined)
         
-        for idx, ship in self.player_fleet.ships:
+        for idx, ship in enumerate(self.player_fleet.ships):
             self.fship_mapping[idx] = ship
 
         self.enemy_fleet = EnemyFleet(rawapi["api_formation"][1], rawapi["api_ship_ke"], rawapi["api_ship_lv"], rawapi["api_eParam"],
                                       rawapi["api_eSlot"], rawapi["api_e_nowhps"], rawapi["api_e_maxhps"], is_combined=self.ecombined)
 
-        for idx, ship in self.enemy_fleet.ships:
+        for idx, ship in enumerate(self.enemy_fleet.ships):
             self.eship_mapping[idx] = ship
 
         if self.fcombined != FLEETTYPE.SINGLE:
@@ -61,7 +60,7 @@ class Battle:
 
     def resupply_fleet(self, combined: bool):
         num, numc = 0.125, 0.025 if combined else 0.11, 0.14
-        rcount = reduce(lambda x, y: x + count_equip(y.equip, 146), self.fship_mapping.values(), 0)
+        rcount = min(reduce(lambda x, y: x + y.count_equip(146), self.fship_mapping.values(), 0), 3)
 
-        f = lambda x: PlayerShip.resupply(x, num * min(rcount, 3) + numc)
+        f = lambda x: x.resupply(num * rcount + numc)
         map(f, self.fship_mapping.values())

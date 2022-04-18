@@ -1,5 +1,5 @@
-from .static import SIDE, FLEETTYPE, FLEETORDER
-from .Ship import PlayerShip, EnemyShip, FriendShip
+from objects.static import SIDE, FLEETTYPE, FLEETORDER
+from objects.Ship import PlayerShip, EnemyShip, FriendShip
 
 
 class PlayerFleet:

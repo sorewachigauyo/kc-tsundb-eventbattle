@@ -7,9 +7,9 @@ from objects.static import FORMATION, PHASE, SIDE, SPEED, STYPE
 from utils import fetch_equip_master, get_gear_improvement_stats
 
 
-def Yasen(rawapi: dict, phase: str):
+def Midnight(rawapi: dict, phase: str):
     return [
-        YasenAttack(attacker=rawapi["api_at_list"][idx] if rawapi["api_sp_list"][idx] not in SPECIAL_ATTACK_ATTACKER_MAP.keys() else
+        MidnightAttack(attacker=rawapi["api_at_list"][idx] if rawapi["api_sp_list"][idx] not in SPECIAL_ATTACK_IDS else
                              SPECIAL_ATTACK_ATTACKER_MAP[rawapi["api_sp_list"][idx]][attack_idx],
                     defender=rawapi["api_df_list"][idx][attack_idx],
                     damage=damage,
@@ -22,7 +22,7 @@ def Yasen(rawapi: dict, phase: str):
         for idx, dmg in enumerate(rawapi["api_damage"]) for attack_idx, damage in enumerate(dmg) if damage > -1
     ]
 
-def process_yasen(attack: YasenAttack, battle: Battle):
+def process_midnight(attack: MidnightAttack, battle: Battle):
 
     # Assign attacker, yasen attacker can be either friendly fleet or player fleet
     if attack.side == SIDE.FRIEND:
@@ -104,7 +104,11 @@ def process_yasen(attack: YasenAttack, battle: Battle):
             critical_modifier = calculate_critical_modifier(attack, attacker)
             num *= critical_modifier
 
-    return attacker, defender, int(num), 
+    # Invincible submarine check? No such check in kcvita so unsure where in formula to put this
+    """ if defender_submarine and (battle.battletype == BATTLETYPE.COMBINED_NIGHT or battle.battletype == BATTLETYPE.NIGHT):
+        num = 0 """
+
+    return attacker, defender, int(num)
 
 def calculate_base_attack_power(attacker: PlayerShip, defender: EnemyShip, night_contact: bool):
 
@@ -189,7 +193,7 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
     
     return num
 
-def calculate_special_attack_modifier(attack: YasenAttack, attacker: PlayerShip, battle: Battle):
+def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerShip, battle: Battle):
     cutin_modifier = YASEN_CUTIN_MODIFIER[attack.cutin]
 
     # Subarmine TCI adjustment

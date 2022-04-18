@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from utils import fetch_equip_master
 from GearBonus import calculate_bonus_gear_stats
-from .static import SIDE, STYPE
+from objects.static import SIDE, STYPE
 
 @dataclass
 class Ship:
@@ -45,6 +45,9 @@ class Ship:
         num2 = 0
         for equip_id in self.equip:
 
+            if equip_id == -1:
+                continue
+
             if included_ids:
                 if not equip_id in included_ids:
                     continue
@@ -64,6 +67,7 @@ class Ship:
                     continue
             
             num += master.get("api_" + stat_name)
+
         if use_visible_bonus and self.side != SIDE.ENEMY:
             r = calculate_bonus_gear_stats(self)
             num2 += r.get(stat_name, 0)

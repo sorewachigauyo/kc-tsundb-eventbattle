@@ -192,7 +192,7 @@ DAMAGE_MODIFIER_RAIGEKI = [0, 0.8, 1, 1, 1]
 ENGAGEMENT_MODIFIERS = [0, 1, 0.8, 1.2, 0.6]
 DEFAULT_DAMAGE_MODIFIER = [0.4, 0.7, 1, 1, 1]
 
-
+SPECIAL_ATTACK_IDS = [100, 101, 102, 103, 104]
 SPECIAL_ATTACK_ATTACKER_MAP = {
     100: [0, 2, 4],
     101: [0, 0, 1],
@@ -252,6 +252,12 @@ YASEN_CUTIN_MODIFIER = {
     302: 1.2
 }
 YASEN_DDCI_TYPE_D_MODIFIER = [1, 1.25, 1.4]
+
+KOUKU_SIDE_TERMS = [
+    ["api_edam", "api_ecl", "api_ebak_flag", "api_erai_flag"],
+    ["api_fdam", "api_fcl", "api_fbak_flag", "api_frai_flag"],
+    ["api_edam", "api_ecl", "api_ebak_flag", "api_erai_flag"]
+]
     
 
 class HITSTATUS:
@@ -284,7 +290,7 @@ class HougekiAttack:
 class RaigekiAttack:
     attacker: int
     defender: int
-    damage: int
+    damage: float
     hitstatus: int
     phase: str
     side: int
@@ -292,25 +298,26 @@ class RaigekiAttack:
 @dataclass
 class KoukuAttack:
     defender: int
-    damage: int
+    damage: float
     hitstatus: int
     phase: str
-    db: int
-    tb: int
+    db: bool
+    tb: bool
     side: int
 
 @dataclass
 class KoukuAttackLB:
     defender: int
-    damage: int
+    damage: float
     hitstatus: int
-    db: int
-    tb: int
     phase: str
+    db: bool
+    tb: bool
     wave: int
+    side: int
 
 @dataclass
-class YasenAttack:
+class MidnightAttack:
     attacker: int
     defender: int
     damage: float
@@ -319,4 +326,22 @@ class YasenAttack:
     night_carrier: int
     cutin: int
     cutin_equips: list
+    side: int
+
+@dataclass
+class HouraiAttackSupport:
+    defender: int
+    damage: float
+    hitstatus: int
+    phase: str
+    side: int
+
+@dataclass
+class KoukuAttackSupport:
+    defender: int
+    damage: float
+    hitstatus: int
+    phase: str
+    db: bool
+    tb: bool
     side: int

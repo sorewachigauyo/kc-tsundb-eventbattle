@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from functools import reduce
 from typing import List, Union
-from .static import SIDE, STYPE
-from .BaseShip import Ship
+from objects.static import SIDE, STYPE
+from objects.BaseShip import Ship
 from utils import fetch_equip_master, fetch_ship_master
 
 @dataclass()
@@ -84,9 +84,9 @@ class PlayerShip(Ship):
 
     def has_equip_type(self, equip_type: Union[int, List[int]], type_filter: int):
         if isinstance(equip_type, int):
-            return next((eq_id for eq_id in self.equip if fetch_equip_master(eq_id)["api_type"][type_filter] == equip_type), False)
+            return next((eq_id for eq_id in self.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][type_filter] == equip_type), False)
         elif isinstance(equip_type, list):
-            return next((eq_id for eq_id in self.equip if fetch_equip_master(eq_id)["api_type"][type_filter] in equip_type), False)
+            return next((eq_id for eq_id in self.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][type_filter] in equip_type), False)
 
 
 @dataclass()

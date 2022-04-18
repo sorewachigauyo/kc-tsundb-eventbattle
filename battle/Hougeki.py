@@ -2,7 +2,7 @@ from functools import reduce
 import numpy as np
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
-from objects.static import BATTLEORDER, FLEETTYPE, FORMATION, PHASE, SIDE, SPEED, STYPE
+from objects.static import FLEETORDER, FLEETTYPE, FORMATION, PHASE, SIDE, SPEED, STYPE
 from utils import fetch_equip_master, get_gear_improvement_stats
 from battle.static import *
 
@@ -12,7 +12,7 @@ def Hougeki(rawapi: dict, phase: str):
                                SPECIAL_ATTACK_ATTACKER_MAP[rawapi["api_at_type"][idx]][attack_idx],
                       defender=rawapi["api_df_list"][idx][attack_idx],
                       damage=damage,
-                      hitstatus=rawapi["api_ci_list"][idx][attack_idx],
+                      hitstatus=rawapi["api_cl_list"][idx][attack_idx],
                       phase=phase,
                       cutin=rawapi["api_at_type"][idx],
                       cutin_equips=rawapi["api_si_list"][idx],
@@ -42,7 +42,7 @@ def process_hougeki(attack: HougekiAttack, battle: Battle):
     # Apply formation and engagement modifiers
     formation_modifier = (HOUGEKI_FORMATION_MODIFIER if not defender_submarine else HOUGEKI_FORMATION_MODIFIER_ASW)[attacker.fleet.formation]
 
-    if attacker.fleet.formation == FORMATION.ECHELON and defender.fleet.type == FLEETTYPE.ENEMYCOMBINED:
+    if attacker.fleet.formation == FORMATION.ECHELON and defender.fleet.fleet_type == FLEETTYPE.ENEMYCOMBINED:
         formation_modifier = 0.6
 
     if attacker.fleet.formation == FORMATION.VANGUARD:
@@ -97,15 +97,16 @@ def process_hougeki(attack: HougekiAttack, battle: Battle):
         num = int(num * ap_shell_mod)
 
     # Apply critical modifiers
-    num *= 1.5
-    critical_modifier = 1
-    
-    # Carrier shelling on non sub OR aerial attack on a sub that is not OASW, CV(B) and AO do not gain prof crit mod on subs
-    if (attacker.uses_carrier_shelling() and not defender_submarine) or (defender_submarine and 
-        attack.phase != PHASE.OPENING_ASW and attacker.uses_carrier_asw_shelling() and attacker.stype not in [11, 18, 22]):
+    if attack.hitstatus == HITSTATUS.CRITICAL:
+        num *= 1.5
+        critical_modifier = 1
+        
+        # Carrier shelling on non sub OR aerial attack on a sub that is not OASW, CV(B) and AO do not gain prof crit mod on subs
+        if (attacker.uses_carrier_shelling() and not defender_submarine) or (defender_submarine and 
+            attack.phase != PHASE.OPENING_ASW and attacker.uses_carrier_asw_shelling() and attacker.stype not in [11, 18, 22]):
 
-        critical_modifier = calculate_critical_modifier(attack, attacker)
-        num *= critical_modifier
+            critical_modifier = calculate_critical_modifier(attack, attacker)
+            num *= critical_modifier
     
     return attacker, defender, int(num)
 
@@ -150,7 +151,7 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
             cutin_modifier *= 1.35
         
         # Radar 
-        if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
@@ -168,7 +169,7 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
             cutin_modifier *= 1.35
         
         # Radar bonus
-        if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
             
@@ -185,7 +186,7 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
             cutin_modifier *= 1.35
         
         # Radar bonus
-        if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
@@ -226,6 +227,9 @@ def calculate_base_asw_power(ship: PlayerShip):
     # Equipment ASW, includes visible bonus
     eq_asw = 0
     for eq_id in ship.equip:
+        if eq_id == -1:
+            continue
+
         master = fetch_equip_master(eq_id)
         if master["api_type"][2] in ASW_EQUIPMENT_TYPE2_IDS:
             eq_asw += master["api_tais"]
@@ -235,7 +239,7 @@ def calculate_base_asw_power(ship: PlayerShip):
     num += 1.5 * eq_asw
 
     # Base ship ASW
-    base_asw = ship.visible_stats["asw"] - ship.fetch_equipment_total_stats("tais", True)
+    base_asw = ship.visible_stats["as"] - ship.fetch_equipment_total_stats("tais", True)
     num += 2 * np.sqrt(base_asw)
 
     # Improvement bonus
@@ -263,30 +267,30 @@ def calculate_base_asw_power(ship: PlayerShip):
     return num
 
 def determine_combined_fleet_factor(attacker: PlayerShip, target: EnemyShip):
-    is_main = attacker.fleet.order == BATTLEORDER.MAIN
+    is_main = attacker.fleet.order == FLEETORDER.MAIN
 
-    if target.fleet.type != FLEETTYPE.ENEMYCOMBINED:
+    if target.fleet.fleet_type != FLEETTYPE.ENEMYCOMBINED:
         # CTF vs single
-        if attacker.fleet.type == FLEETTYPE.CTF:
+        if attacker.fleet.fleet_type == FLEETTYPE.CTF:
             return 2 if is_main else 10
         # STF vs single
-        elif attacker.fleet.type == FLEETTYPE.STF:
+        elif attacker.fleet.fleet_type == FLEETTYPE.STF:
             return 10 if is_main else -5
         # TCF vs single
-        elif attacker.fleet.type == FLEETTYPE.CTF:
+        elif attacker.fleet.fleet_type == FLEETTYPE.CTF:
             return -5 if is_main else 10
         # Single vs Single
         else:
             return 0
     else:
         # CTF vs CF
-        if attacker.fleet.type == FLEETTYPE.CTF:
+        if attacker.fleet.fleet_type == FLEETTYPE.CTF:
             return 2 if is_main else 10
         # STF vs CF
-        elif attacker.fleet.type == FLEETTYPE.STF:
+        elif attacker.fleet.fleet_type == FLEETTYPE.STF:
             return 10 if is_main else -5
         # TCF vs CF
-        elif attacker.fleet.type == FLEETTYPE.CTF:
+        elif attacker.fleet.fleet_type == FLEETTYPE.CTF:
             return -5
         # Single vs CF
         else:
@@ -598,6 +602,9 @@ def calculate_critical_modifier(attack: HougekiAttack, attacker: PlayerShip):
         alv = 0
         # Calculate average proficiency bonus
         for idx, eq_id in enumerate(attacker.equip):
+            if eq_id == -1:
+                continue
+
             if fetch_equip_master(eq_id)["api_type"][2] in BOMBER_TYPE2_IDS:
                 cnt += 1
                 alv += max(attacker.proficiency[idx], 0)
