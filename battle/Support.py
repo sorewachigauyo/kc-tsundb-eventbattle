@@ -2,6 +2,8 @@ from battle.static import HITSTATUS, HouraiAttackSupport, KoukuAttackSupport
 from objects.static import SIDE
 
 # Shelling + Torpedo Support
+
+
 def SupportHourai(rawapi: dict, phase: str):
     return [
         HouraiAttackSupport(
@@ -15,6 +17,8 @@ def SupportHourai(rawapi: dict, phase: str):
     ]
 
 # Aerial + ASW Support
+
+
 def SupportKouku(rawapi: dict, phase: str):
     return [
         KoukuAttackSupport(
@@ -28,4 +32,3 @@ def SupportKouku(rawapi: dict, phase: str):
         ) for ship_idx, damage in enumerate(rawapi["api_edam"])
         if rawapi["api_erai_flag"][ship_idx] or rawapi["api_ebak_flag"][ship_idx]
     ]
-

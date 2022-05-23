@@ -44,7 +44,7 @@ ISOLATED_ISLAND_PRINCESS_M4A1_MODIFIER = 1.8
 ISOLATED_ISLAND_PRINCESS_KAMI_MODIFIER = [1, 2.4, 3.24]
 ISOLATED_ISLAND_PRINCESS_ARMED_DLC_AB_MODIFIER = [1, 1.3, 1.43]
 
-HARBOUR_SUMMER_PRINCESS_IDS =  [
+HARBOUR_SUMMER_PRINCESS_IDS = [
     1699, 1700, 1701,   # Base
     1702, 1703, 1704,   # Damaged
     2023, 2024, 2025,   # B
@@ -76,7 +76,8 @@ SOFT_SKINNED_KAMI_MODIFIER = [1, 1.5, 1.8]
 SOFT_SKINNED_PANZER_MODIFIER = 1.5
 SOFT_SKINNED_DAY_ARMED_DLC_AB_MODIFIER = [1, 1.1, 1.21]
 
-ANTI_LAND_BOMBER_IDS = [64,148,233,277,305,306,319,320,391,392,420,421]
+ANTI_LAND_BOMBER_IDS = [64, 148, 233, 277,
+                        305, 306, 319, 320, 391, 392, 420, 421]
 BOMBER_TYPE2_IDS = [7, 8, 11, 41, 57, 58]
 ASW_EQUIPMENT_TYPE2_IDS = [7, 8, 11, 14, 15, 25, 26, 40]
 CL_SINGLE_GUNS = [4, 11]
@@ -116,8 +117,8 @@ SDH_IDS = [
     1936, 1937, 1938,       # B landing mode damaged
     1994,                   # B
     1995,                   # B Damaged
-    2015, 2016, 2017, 2018, # B vacation
-    2019, 2020, 2021, 2022, # B vacation damaged
+    2015, 2016, 2017, 2018,  # B vacation
+    2019, 2020, 2021, 2022,  # B vacation damaged
     2084, 2086, 2088,       # C
     2085, 2087, 2089,       # C damaged
 ]
@@ -147,8 +148,10 @@ YASEN_CAP = 360
 RAIGEKI_CAP = 180
 DEFAULT_CAP = 170
 
-HOUGEKI_FORMATION_MODIFIER = [0, 1.0, 0.8, 0.7, 0.75, 0.6, 1, 0, 0, 0, 0, 0.8, 1.0, 0.7, 1.1]
-HOUGEKI_FORMATION_MODIFIER_ASW = [0, 0.6, 0.8, 1.2, 1.1 , 1.3, 1, 0, 0, 0, 0, 1.3, 1.1, 1.0, 0.7]
+HOUGEKI_FORMATION_MODIFIER = [0, 1.0, 0.8, 0.7,
+                              0.75, 0.6, 1, 0, 0, 0, 0, 0.8, 1.0, 0.7, 1.1]
+HOUGEKI_FORMATION_MODIFIER_ASW = [
+    0, 0.6, 0.8, 1.2, 1.1, 1.3, 1, 0, 0, 0, 0, 1.3, 1.1, 1.0, 0.7]
 HOUGEKI_CUTIN_MODIFIER = {
     0: 1,
     2: 1.2,
@@ -167,6 +170,8 @@ HOUGEKI_CUTIN_MODIFIER = {
     301: 1.2,
     302: 1.2
 }
+
+
 class HOUGEKI_CUTIN:
     SINGLE_ATTACK = 0
     LASER = 1
@@ -186,7 +191,9 @@ class HOUGEKI_CUTIN:
     SUBFLEET_SPECIAL_2 = 301
     SUBFLEET_SPECIAL_3 = 302
 
-RAIGEKI_FORMATION_MODIFIER = [0, 1.0, 0.8, 0.7, 0.6 , 0.6, 1, 0, 0, 0, 0, 0.7, 0.9, 0.6, 1]
+
+RAIGEKI_FORMATION_MODIFIER = [0, 1.0, 0.8, 0.7,
+                              0.6, 0.6, 1, 0, 0, 0, 0, 0.7, 0.9, 0.6, 1]
 DAMAGE_MODIFIER_RAIGEKI = [0, 0.8, 1, 1, 1]
 
 ENGAGEMENT_MODIFIERS = [0, 1, 0.8, 1.2, 0.6]
@@ -200,6 +207,7 @@ SPECIAL_ATTACK_ATTACKER_MAP = {
     103: [0, 1, 2],
     104: [0, 1]
 }
+
 
 class YASEN_CUTIN:
     SINGLE_ATTACK = 0
@@ -225,6 +233,7 @@ class YASEN_CUTIN:
     SUBFLEET_SPECIAL_1 = 300
     SUBFLEET_SPECIAL_2 = 301
     SUBFLEET_SPECIAL_3 = 302
+
 
 YASEN_CUTIN_MODIFIER = {
     0: 1,
@@ -258,7 +267,7 @@ KOUKU_SIDE_TERMS = [
     ["api_fdam", "api_fcl", "api_fbak_flag", "api_frai_flag"],
     ["api_edam", "api_ecl", "api_ebak_flag", "api_erai_flag"]
 ]
-    
+
 
 class HITSTATUS:
     MISS = 0
@@ -272,6 +281,7 @@ class ENGAGEMENT:
     GREEN_T = 3
     RED_T = 4
 
+
 @dataclass
 class HougekiAttack:
     attacker: int
@@ -283,6 +293,7 @@ class HougekiAttack:
     cutin_equips: list
     side: int
 
+
 @dataclass
 class RaigekiAttack:
     attacker: int
@@ -291,6 +302,7 @@ class RaigekiAttack:
     hitstatus: int
     phase: str
     side: int
+
 
 @dataclass
 class KoukuAttack:
@@ -302,6 +314,7 @@ class KoukuAttack:
     tb: bool
     side: int
 
+
 @dataclass
 class KoukuAttackLB:
     defender: int
@@ -312,6 +325,7 @@ class KoukuAttackLB:
     tb: bool
     wave: int
     side: int
+
 
 @dataclass
 class MidnightAttack:
@@ -325,6 +339,7 @@ class MidnightAttack:
     cutin_equips: list
     side: int
 
+
 @dataclass
 class HouraiAttackSupport:
     defender: int
@@ -332,6 +347,7 @@ class HouraiAttackSupport:
     hitstatus: int
     phase: str
     side: int
+
 
 @dataclass
 class KoukuAttackSupport:

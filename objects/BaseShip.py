@@ -5,6 +5,7 @@ from utils import fetch_equip_master
 from GearBonus import calculate_bonus_gear_stats
 from objects.static import SIDE, STYPE
 
+
 @dataclass
 class Ship:
     """Base ship class object
@@ -39,10 +40,10 @@ class Ship:
         """Checks the stype if ship is a submarine.
         """
         return self.stype == STYPE.SS or self.stype == STYPE.SSV
-    
-    def fetch_equipment_total_stats(self, stat_name: str, use_visible_bonus = False, included_types = None,
-                                          included_ids = None, excluded_types = None, excluded_ids = None,
-                                          return_visible_bonus_only=False):
+
+    def fetch_equipment_total_stats(self, stat_name: str, use_visible_bonus=False, included_types=None,
+                                    included_ids=None, excluded_types=None, excluded_ids=None,
+                                    return_visible_bonus_only=False):
         num = 0
         num2 = 0
         for equip_id in self.equip:
@@ -67,7 +68,7 @@ class Ship:
             if excluded_types:
                 if master.get("api_type")[2] in excluded_types:
                     continue
-            
+
             num += master.get("api_" + stat_name)
 
         if use_visible_bonus and self.side != SIDE.ENEMY:
@@ -77,7 +78,7 @@ class Ship:
         if return_visible_bonus_only:
             return num2
         return num + num2
-        
+
     def count_equip(self, equip_id: Union[int, List[int]]):
         if isinstance(equip_id, int):
             return reduce(lambda x, y: x + (y == equip_id), self.equip, 0)

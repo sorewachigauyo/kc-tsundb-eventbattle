@@ -3,9 +3,11 @@ from objects.Fleet import PlayerFleet, EnemyFleet, FriendFleet
 from objects.static import BATTLETYPE, FLEETTYPE
 from objects.Ship import EnemyShip, PlayerShip
 
+
 class Battle:
     """Class representing a battle.
     """
+
     def __init__(self, apiname: str, rawapi: dict, playerformation: int, resupplyused: bool, fleet: dict, **kwargs):
         self.battletype = apiname
         self.engagement = rawapi["api_formation"][2]
@@ -16,8 +18,8 @@ class Battle:
         self.eship_mapping: dict[int, EnemyShip] = {}
 
         self.player_fleet = PlayerFleet(playerformation, fleet["fleet1"], rawapi["api_fParam"], rawapi["api_f_nowhps"],
-                                       rawapi["api_f_maxhps"], self.fcombined)
-        
+                                        rawapi["api_f_maxhps"], self.fcombined)
+
         for idx, ship in enumerate(self.player_fleet.ships):
             self.fship_mapping[idx] = ship
 
@@ -45,7 +47,8 @@ class Battle:
                 self.eship_mapping[idx + 6] = ship
 
         if "api_friendly_info" in rawapi:
-            self.friendly_fleet = FriendFleet(playerformation=playerformation, **rawapi["api_friendly_info"])
+            self.friendly_fleet = FriendFleet(
+                playerformation=playerformation, **rawapi["api_friendly_info"])
 
         if resupplyused:
             self.resupply_fleet(self.fcombined != FLEETTYPE.SINGLE)
@@ -54,13 +57,14 @@ class Battle:
         self.contact = -1
         self.active_deck = [1, 1]
         if self.battletype in [BATTLETYPE.NIGHT, BATTLETYPE.NIGHT_START, BATTLETYPE.COMBINED_NIGHT,
-            BATTLETYPE.COMBINED_NIGHT_START, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT_TO_DAY]:
+                               BATTLETYPE.COMBINED_NIGHT_START, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT_TO_DAY]:
             self.contact = int(rawapi["api_touch_plane"][0])
             self.active_deck = rawapi["api_active_deck"]
 
     def resupply_fleet(self, combined: bool):
         num, numc = 0.125, 0.025 if combined else 0.11, 0.14
-        rcount = min(reduce(lambda x, y: x + y.count_equip(146), self.fship_mapping.values(), 0), 3)
+        rcount = min(reduce(lambda x, y: x + y.count_equip(146),
+                     self.fship_mapping.values(), 0), 3)
 
-        f = lambda x: x.resupply(num * rcount + numc)
+        def f(x): return x.resupply(num * rcount + numc)
         map(f, self.fship_mapping.values())

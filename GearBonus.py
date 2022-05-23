@@ -11,6 +11,7 @@ with open("./data/KC3GearBonus.json") as r:
 
 bonus_gear_ids = list(data.keys())
 
+
 def calculate_bonus_gear_stats(ship):
     result = {
         "houg": 0,
@@ -37,7 +38,7 @@ def calculate_bonus_gear_stats(ship):
         add_bonus(bonus, result, ship, synergy)
 
     return result
-    
+
 
 def fill_synergy(ship, raw):
     synergy = copy.copy(raw)
@@ -61,7 +62,7 @@ def fill_synergy(ship, raw):
                 elif key == "rotorcraftIds":
                     if master["api_type"][2] == 25:
                         synergy["rotorcraft"] += 1
-                
+
                 # AA MG
                 elif key == "aaMachineGunIds":
                     if master["api_type"][2] == 21:
@@ -75,6 +76,7 @@ def fill_synergy(ship, raw):
                         if nonexist in synergy.keys():
                             synergy[nonexist] = 0
     return synergy
+
 
 def fill_count(ship):
     obj = {}
@@ -108,19 +110,21 @@ def fill_count(ship):
             bonus = obj[t3key]
             bonus["count"] += 1
             fill_stars(bonus, improvement)
-    
+
     return obj
+
 
 def fill_stars(bonus, improvement):
     if (improvement == -1):
         return bonus
-    
+
     if "starsDist" in bonus.keys():
         if len(bonus["starsDist"]) == 0:
             bonus["starsDist"] = [0 for i in range(11)]
 
         bonus["starsDist"][improvement] += 1
     return bonus
+
 
 def add_bonus(bonus, result, ship, synergy):
     ctype = ship.ctype
@@ -134,7 +138,7 @@ def add_bonus(bonus, result, ship, synergy):
             for bdef in bonus_definition:
                 add_stats(bdef, ship, result, synergy, bonus)
         else:
-            add_stats(bonus_definition, ship, result, synergy, bonus)   
+            add_stats(bonus_definition, ship, result, synergy, bonus)
 
     if "byShip" in bonus:
         bonus_definition = bonus["byShip"]
@@ -143,6 +147,7 @@ def add_bonus(bonus, result, ship, synergy):
                 add_stats(bdef, ship, result, synergy, bonus)
         else:
             add_stats(bonus_definition, ship, result, synergy, bonus)
+
 
 def add_stats(bonus_definition, ship, result, synergy, bonus):
     ctype = ship.ctype
@@ -171,7 +176,7 @@ def add_stats(bonus_definition, ship, result, synergy, bonus):
         return
     if "remodelCap" in keys and remodel_index > bonus_definition["remodelCap"]:
         return
-    
+
     count = bonus["count"]
     if "minStars" in keys:
         count = sum(bonus["starsDist"][bonus_definition["minStars"]:])
@@ -180,7 +185,7 @@ def add_stats(bonus_definition, ship, result, synergy, bonus):
 
     if "minCount" in keys and count < bonus_definition["minCount"]:
         return
-    
+
     # We can finally add the stats together
     if "single" in keys:
         _add_stats(result, bonus_definition["single"])
@@ -189,7 +194,7 @@ def add_stats(bonus_definition, ship, result, synergy, bonus):
         if "countCap" in keys:
             count = min(count, bonus_definition["countCap"])
         _add_stats(result, bonus_definition["multiple"], count)
-    
+
     # Gear synergy
     if "synergy" in keys:
         synergy_bonuses = bonus_definition["synergy"]
@@ -215,11 +220,11 @@ def add_stats(bonus_definition, ship, result, synergy, bonus):
                         gear_count = count
                     else:
                         gear_count = synergy[gear_name]
-                    _add_stats(result, synergy_bonus["byCount"][str(gear_count)])
+                    _add_stats(
+                        result, synergy_bonus["byCount"][str(gear_count)])
 
-    
+
 def _add_stats(dict1, dict2, num=1):
     # Add values of dict2 into dict1
     for key, value in dict2.items():
         dict1[key] += value * num
- 

@@ -8,20 +8,31 @@ from utils import get_gear_improvement_stats
 
 def Raigeki(rawapi: dict, phase: str):
     return [
-        RaigekiAttack(attacker=idx,
-                      defender=frai,
-                      damage=rawapi["api_fydam"][idx],
-                      hitstatus=rawapi["api_fcl"][idx],
-                      phase=phase, side=SIDE.PLAYER)
-            for idx, frai in enumerate(rawapi["api_frai"]) if frai > -1
+        RaigekiAttack(
+            attacker=idx,
+            defender=defender,
+            damage=damage,
+            hitstatus=hitstatus,
+            phase=phase,
+            side=SIDE.PLAYER
+        ) for idx, (defender, damage, hitstatus) in enumerate(zip(
+            rawapi["api_frai"],
+            rawapi["api_fydam"],
+            rawapi["api_fcl"]
+        )) if defender > -1
     ] + [
-        RaigekiAttack(attacker=idx,
-                      defender=erai,
-                      damage=rawapi["api_eydam"][idx],
-                      hitstatus=rawapi["api_ecl"][idx],
-                      phase=phase,
-                      side=SIDE.ENEMY)
-            for idx, erai in enumerate(rawapi["api_erai"]) if erai > -1
+        RaigekiAttack(
+            attacker=idx,
+            defender=defender,
+            damage=damage,
+            hitstatus=hitstatus,
+            phase=phase,
+            side=SIDE.ENEMY
+        ) for idx, (defender, damage, hitstatus) in enumerate(zip(
+            rawapi["api_erai"],
+            rawapi["api_eydam"],
+            rawapi["api_ecl"]
+        )) if defender > -1
     ]
 
 def process_raigeki(attack: RaigekiAttack, battle: Battle):

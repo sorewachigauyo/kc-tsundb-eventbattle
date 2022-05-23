@@ -10,18 +10,29 @@ from utils import fetch_equip_master, get_gear_improvement_stats
 
 def Midnight(rawapi: dict, phase: str):
     return [
-        MidnightAttack(attacker=rawapi["api_at_list"][idx] if rawapi["api_sp_list"][idx] not in SPECIAL_ATTACK_IDS else
-                             SPECIAL_ATTACK_ATTACKER_MAP[rawapi["api_sp_list"][idx]][attack_idx],
-                    defender=rawapi["api_df_list"][idx][attack_idx],
-                    damage=damage,
-                    hitstatus=rawapi["api_cl_list"][idx][attack_idx],
-                    phase=phase,
-                    night_carrier=rawapi["api_n_mother_list"][idx],
-                    cutin=rawapi["api_sp_list"][idx],
-                    cutin_equips=rawapi["api_si_list"][idx],
-                    side=SIDE.FRIEND if phase == PHASE.FRIENDLY_SHELLING and rawapi["api_at_eflag"][idx] == 0 else rawapi["api_at_eflag"][idx])
-        for idx, dmg in enumerate(rawapi["api_damage"]) for attack_idx, damage in enumerate(dmg) if damage > -1
+        MidnightAttack(
+            attacker=attacker if attacker not in SPECIAL_ATTACK_IDS else SPECIAL_ATTACK_ATTACKER_MAP[
+                cutin][idx],
+            defender=defender[idx],
+            damage=damage,
+            hitstatus=hitstatus[idx],
+            phase=phase,
+            night_carrier=night_carrier,
+            cutin=cutin,
+            cutin_equips=cutin_equips,
+            side=SIDE.FRIEND if phase == PHASE.FRIENDLY_SHELLING and side == SIDE.PLAYER else side
+        ) for attacker, defender, damage_array, hitstatus, night_carrier, cutin, cutin_equips, side in zip(
+            rawapi["api_at_list"],
+            rawapi["api_df_list"],
+            rawapi["api_damage"],
+            rawapi["api_cl_list"],
+            rawapi["api_n_mother_list"],
+            rawapi["api_sp_list"],
+            rawapi["api_si_list"],
+            rawapi["api_at_eflag"]
+        ) for idx, damage in enumerate(damage_array) if damage > -1
     ]
+
 
 def process_midnight(attack: MidnightAttack, battle: Battle):
 
@@ -65,18 +76,20 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
     num *= formation_modifier
 
     # Apply cutin modifier
-    cutin_modifier = calculate_special_attack_modifier(attack, attacker, battle)
+    cutin_modifier = calculate_special_attack_modifier(
+        attack, attacker, battle)
     num *= cutin_modifier
 
     # Apply health damage modifier
-    damage_modifier = DEFAULT_DAMAGE_MODIFIER[int(attacker.hp[0] / attacker.hp[1] * 4)]
+    damage_modifier = DEFAULT_DAMAGE_MODIFIER[int(
+        attacker.hp[0] / attacker.hp[1] * 4)]
     num *= damage_modifier
 
     # Invisible fits
     # CL/CLT/CT Single/Twin Gun Fit
     if attacker.stype in [STYPE.CL, STYPE.CLT, STYPE.CT]:
         single_gun_count = attacker.count_equip(CL_SINGLE_GUNS)
-        twin_gun_count =  attacker.count_equip(CL_TWIN_GUNS)
+        twin_gun_count = attacker.count_equip(CL_TWIN_GUNS)
         num += np.sqrt(single_gun_count) + 2 * np.sqrt(twin_gun_count)
 
     # Zara/Pola 203mm Fit
@@ -106,19 +119,23 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
 
     return attacker, defender, int(num)
 
+
 def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defender: EnemyShip, night_contact: bool):
 
     defender_installation = defender.speed == SPEED.NONE
     if isinstance(attacker, PlayerShip):
-        num = attacker.visible_stats["fp"] + get_gear_improvement_stats(attacker)["yasen"]
+        num = attacker.visible_stats["fp"] + \
+            get_gear_improvement_stats(attacker)["yasen"]
     elif isinstance(attacker, FriendShip):
-        num = attacker.fp + get_gear_improvement_stats(attacker)["yasen"] + attacker.fetch_equipment_total_stats("houg")
+        num = attacker.fp + get_gear_improvement_stats(
+            attacker)["yasen"] + attacker.fetch_equipment_total_stats("houg")
 
     if night_contact:
         num += 5
 
     if defender_installation:
-        num = calculate_anti_installation_precap(num, attacker, defender, False)
+        num = calculate_anti_installation_precap(
+            num, attacker, defender, False)
     else:
         if isinstance(attacker, PlayerShip):
             num += attacker.visible_stats["tp"]
@@ -126,6 +143,7 @@ def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defende
             num += attacker.tp + attacker.fetch_equipment_total_stats("raig")
 
     return num
+
 
 def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, night_contact):
     defender_installation = defender.speed == SPEED.NONE
@@ -143,9 +161,10 @@ def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, n
 
     if night_contact:
         num += 5
-    
+
     if defender_installation:
-        num = calculate_anti_installation_precap(num, attacker, defender, False)
+        num = calculate_anti_installation_precap(
+            num, attacker, defender, False)
 
     return num
 
@@ -169,10 +188,10 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
         night_bomber = master["api_type"][3] in NIGHT_BOMBER_TYPE3_IDS
         slot_size = attacker.slot[idx]
         stars = max(attacker.stars[idx], 0)
-        
+
         if slot_size > 0 and (special_bomber or night_bomber):
             num += master["api_houg"]
-            
+
             if not defender_installation:
                 num += master["api_raig"]
 
@@ -184,7 +203,8 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
                 num += 3 * slot_size
                 mod = 0.45
 
-            num += np.sqrt(slot_size) * mod * (master["api_baku"] + master["api_houg"] + master["api_raig"] + master["api_tais"])
+            num += np.sqrt(slot_size) * mod * (
+                master["api_baku"] + master["api_houg"] + master["api_raig"] + master["api_tais"])
             num += np.sqrt(stars)
 
     if night_contact:
@@ -192,11 +212,14 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
 
     # Torpedo visible bonus counts, but not shelling
     if not defender_installation:
-        num += attacker.fetch_equipment_total_stats("raig", True, return_visible_bonus_only=True, included_types=[8, 58], included_ids=[])
+        num += attacker.fetch_equipment_total_stats(
+            "raig", True, return_visible_bonus_only=True, included_types=[8, 58], included_ids=[])
     else:
-        num = calculate_anti_installation_precap(num, attacker, defender, False)
-    
+        num = calculate_anti_installation_precap(
+            num, attacker, defender, False)
+
     return num
+
 
 def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerShip, battle: Battle):
     cutin_modifier = YASEN_CUTIN_MODIFIER[attack.cutin]
@@ -207,10 +230,10 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
 
         if attacker.has_equip_type(51, 2) and late_torpedo_count:
             cutin_modifier = 1.75
-        
+
         elif late_torpedo_count >= 2:
             cutin_modifier = 1.6
-    
+
     # Adjust for CVCI
     elif attack.cutin == YASEN_CUTIN.CARRIER_CUTIN:
 
@@ -224,11 +247,11 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
 
             for eq_id in attack.cutin_equips:
                 master = fetch_equip_master(int(eq_id))
-                if master["api_type"][3]  == 45:
+                if master["api_type"][3] == 45:
                     nf += 1
                 elif master["api_type"][3] == 46:
                     nb += 1
-            
+
             # Night Fighter x2 + Night Bomber is the only cutin with 1.25x modifier
             if nf == 2 and nb == 1:
                 cutin_modifier = 1.25
@@ -238,18 +261,19 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
         dk2 = attacker.count_equip(267)
         dk3 = attacker.count_equip(366)
 
-        cutin_modifier *= YASEN_DDCI_TYPE_D_MODIFIER[min(dk2 + dk3, 2)] * (1 + dk3 * 0.05)
+        cutin_modifier *= YASEN_DDCI_TYPE_D_MODIFIER[min(
+            dk2 + dk3, 2)] * (1 + dk3 * 0.05)
 
     # Nelson Touch Red T
     elif attack.cutin == YASEN_CUTIN.NELSON_TOUCH and battle.engagement == ENGAGEMENT.RED_T:
         cutin_modifier = 2.5
-    
+
     # Nagato Broadside
     elif attack.cutin == YASEN_CUTIN.NAGATO_SPECIAL:
         thirdshot = attacker.id != 541
         if thirdshot:
             cutin_modifier = 1.2
-        
+
         partner_ship_id = attacker.fleet.ships[1].id
         # Mutsu K2 partner bonus
         if partner_ship_id == 573:
@@ -266,8 +290,8 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
             cutin_modifier *= 1.35
-        
-        # Radar 
+
+        # Radar
         if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
@@ -276,7 +300,7 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
         thirdshot = attacker.id != 573
         if thirdshot:
             cutin_modifier = 1.2
-        
+
         # Nagato K2 partner bonus
         if attacker.fleet.ships[1].id == 541:
             cutin_modifier *= 1.4 if thirdshot else 1.2
@@ -284,12 +308,12 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
             cutin_modifier *= 1.35
-        
+
         # Radar bonus
         if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
-            
+
     elif attack.cutin == YASEN_CUTIN.COLORADO_SPECIAL:
         if attacker.id != 601 or attacker.id != 1496:
             cutin_modifier = 1.2
@@ -297,11 +321,11 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             # Big 7 partner bonus
             if attacker.id in [80, 275, 541, 81, 276, 573, 571, 576]:
                 cutin_modifier *= 1.1 if attacker.fleet.ships[1].id == attacker.id else 1.15
-        
+
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
             cutin_modifier *= 1.35
-        
+
         # Radar bonus
         if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):

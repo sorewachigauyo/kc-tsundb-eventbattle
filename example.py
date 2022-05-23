@@ -10,7 +10,8 @@ with open("./raw/E5-3.json") as r:
     data = json.load(r)
 
 apiname = data["apiname"]
-rawapi = json.loads(data["rawapi"]) # early version on EO, no need for string reload into dict
+# early version on EO, no need for string reload into dict
+rawapi = json.loads(data["rawapi"])
 playerformation = data["playerformation"]
 resupplyused = data["resupplyused"]
 fleet = data["fleet"]
@@ -20,23 +21,23 @@ attacks = handle_battle(battle, rawapi)
 
 for attack in attacks:
     dmg = int(attack.damage)
-    if isinstance(attack, RaigekiAttack)  and attack.hitstatus > 0:
+    if isinstance(attack, RaigekiAttack) and attack.hitstatus > 0:
         attacker, defender, num = process_raigeki(attack, battle)
         lbound, ubound = calculate_damage_range(attacker, defender, num)
-        
+
     elif isinstance(attack, HougekiAttack) and attack.hitstatus > 0 and attack.cutin < 300:
 
         attacker, defender, num = process_hougeki(attack, battle)
         lbound, ubound = calculate_damage_range(attacker, defender, num)
 
     elif isinstance(attack, MidnightAttack) and attack.hitstatus > 0 and attack.cutin < 300:
-        
+
         attacker, defender, num = process_midnight(attack, battle)
         lbound, ubound = calculate_damage_range(attacker, defender, num)
 
-
         if not is_scratch(defender, dmg) and dmg > ubound:
-            reversed_num_low, reversed_num_high = reversed_attack_power(attacker, defender, dmg)
+            reversed_num_low, reversed_num_high = reversed_attack_power(
+                attacker, defender, dmg)
             print(f"Ship {attacker.id}")
             print(f"Expected Damage Range: {lbound} - {ubound}")
             print(f"Actual Damage: {dmg}")
@@ -46,4 +47,3 @@ for attack in attacks:
             print()
 
     handle_attack(attack, battle)
-

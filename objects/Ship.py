@@ -5,10 +5,12 @@ from objects.static import SIDE, STYPE
 from objects.BaseShip import Ship
 from utils import fetch_equip_master, fetch_ship_master
 
+
 @dataclass()
 class PlayerShip(Ship):
     """Player side ship object
     """
+
     def __init__(self, nowhp, maxhp, fParam, ship_obj, fleet):
         self.hp = [nowhp, maxhp]
         self.fp = ship_obj["stats"]["fp"]
@@ -27,13 +29,12 @@ class PlayerShip(Ship):
         self.ammo = ship_obj["ammo"]
         self.side = SIDE.PLAYER
         self.fleet = fleet
-        
+
         master = fetch_ship_master(self.id)
         self.stype = master["api_stype"]
         self.ctype = master["api_ctype"]
         self.speed = master["api_soku"]
 
-    
     def resupply(self, amount):
         master = fetch_ship_master(self.id)
         fuel_max = master["api_fuel_max"]
@@ -47,7 +48,8 @@ class PlayerShip(Ship):
         """
         if self.is_carrier():
             return True
-        if self.id == 717 or self.id == 352: # Yamashio Maru or Hayasui use carrier shelling if they have a non-zeroed bomber 
+        # Yamashio Maru or Hayasui use carrier shelling if they have a non-zeroed bomber
+        if self.id == 717 or self.id == 352:
             for idx, equip_id in enumerate(self.equip):
                 if equip_id == -1:
                     pass
@@ -61,7 +63,7 @@ class PlayerShip(Ship):
         """
         if self.is_carrier() or self.stype == STYPE.CAV or self.stype == STYPE.AV or self.stype == STYPE.LHA or self.stype == STYPE.BBV:
             return True
-        
+
         return False
 
 
@@ -69,6 +71,7 @@ class PlayerShip(Ship):
 class EnemyShip(Ship):
     """Enemy side ship object
     """
+
     def __init__(self, nowhp, maxhp, eParam, eSlot, ship_lv, id, fleet):
         self.hp = [nowhp, maxhp]
         self.fp = eParam[0]
@@ -85,10 +88,12 @@ class EnemyShip(Ship):
         self.stype = master["api_stype"]
         self.speed = master["api_soku"]
 
+
 @dataclass()
 class FriendShip(Ship):
     """Friendly fleet ship object
     """
+
     def __init__(self, nowhp, maxhp, fParam, fSlot, ship_lv, id, fleet):
         self.hp = [nowhp, maxhp]
         self.fp = fParam[0]
