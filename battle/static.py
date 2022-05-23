@@ -265,9 +265,6 @@ class HITSTATUS:
     HIT = 1
     CRITICAL = 2
 
-class ATTACKERSIDE:
-    PLAYER = 0
-    ENEMY = 1
 
 class ENGAGEMENT:
     PARALLEL = 1

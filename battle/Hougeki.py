@@ -614,6 +614,10 @@ def calculate_critical_modifier(attack: HougekiAttack, attacker: PlayerShip):
     else:
         # Calculate normal carrier bonus, note that even zeroed planes count towards total proficiency
         for idx, eq_id in enumerate(attacker.equip):
+
+            if eq_id == -1:
+                continue
+
             divisor = 200 if idx != 0 else 100
             if fetch_equip_master(eq_id)["api_type"][2] in BOMBER_TYPE2_IDS:
                 proficiency = max(attacker.proficiency[idx], 0)

@@ -32,7 +32,7 @@ class Battle:
                                                    rawapi["api_f_nowhps_combined"], rawapi["api_f_maxhps_combined"],
                                                    self.fcombined, False)
 
-            for idx, ship in self.player_escort_fleet:
+            for idx, ship in enumerate(self.player_escort_fleet.ships):
                 self.fship_mapping[idx + 6] = ship
 
         if self.ecombined:
@@ -41,7 +41,7 @@ class Battle:
                                                  rawapi["api_eSlot_combined"], rawapi["api_e_nowhps_combined"],
                                                  rawapi["api_e_maxhps_combined"], False, self.ecombined)
 
-            for idx, ship in self.enemy_escort_fleet:
+            for idx, ship in enumerate(self.enemy_escort_fleet.ships):
                 self.eship_mapping[idx + 6] = ship
 
         if "api_friendly_info" in rawapi:
@@ -55,7 +55,7 @@ class Battle:
         self.active_deck = [1, 1]
         if self.battletype in [BATTLETYPE.NIGHT, BATTLETYPE.NIGHT_START, BATTLETYPE.COMBINED_NIGHT,
             BATTLETYPE.COMBINED_NIGHT_START, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT_TO_DAY]:
-            self.contact = rawapi["api_touch_plane"][0]
+            self.contact = int(rawapi["api_touch_plane"][0])
             self.active_deck = rawapi["api_active_deck"]
 
     def resupply_fleet(self, combined: bool):

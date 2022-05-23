@@ -11,7 +11,7 @@ class PlayerShip(Ship):
     """
     def __init__(self, nowhp, maxhp, fParam, ship_obj, fleet):
         self.hp = [nowhp, maxhp]
-        self.fp = fParam[0]
+        self.fp = ship_obj["stats"]["fp"]
         self.tp = fParam[1]
         self.aa = fParam[2]
         self.ar = fParam[3]
@@ -64,30 +64,6 @@ class PlayerShip(Ship):
         
         return False
 
-    def count_equip(self, equip_id: Union[int, List[int]]):
-        if isinstance(equip_id, int):
-            return reduce(lambda x, y: x + (y == equip_id), self.equip, 0)
-        elif isinstance(equip_id, list):
-            return reduce(lambda x, y: x + (y in equip_id), self.equip, 0)
-
-    def count_equip_by_type(self, equip_type: Union[int, List[int]], type_filter: int):
-        if isinstance(equip_type, int):
-            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] == equip_type), self.equip, 0)
-        elif isinstance(equip_type, list):
-            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] in equip_type), self.equip, 0)
-
-    def has_equip(self, equip_id: Union[int, List[int]]):
-        if isinstance(equip_id, int):
-            return equip_id in self.equip
-        elif isinstance(equip_id, list):
-            return next((eq_id for eq_id in self.equip if eq_id in equip_id), False)
-
-    def has_equip_type(self, equip_type: Union[int, List[int]], type_filter: int):
-        if isinstance(equip_type, int):
-            return next((eq_id for eq_id in self.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][type_filter] == equip_type), False)
-        elif isinstance(equip_type, list):
-            return next((eq_id for eq_id in self.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][type_filter] in equip_type), False)
-
 
 @dataclass()
 class EnemyShip(Ship):
@@ -127,6 +103,9 @@ class FriendShip(Ship):
         self.fleet = fleet
 
         master = fetch_ship_master(self.id)
-        self.stype = master.get("api_stype")
-        self.speed = master.get("api_soku")
-        self.ctype = master.get("api_ctype")
+        self.stype = master.get("api_stype", 0)
+        self.speed = master.get("api_soku", 0)
+        self.ctype = master.get("api_ctype", 0)
+        self.slot = master.get("api_maxeq", [0, 0, 0, 0, 0])
+        self.fuel = master.get("api_fuel_max", 100)
+        self.ammo = master.get("api_bull_max", 100)

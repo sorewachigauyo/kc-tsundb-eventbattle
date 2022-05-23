@@ -33,11 +33,35 @@ def calculate_damage_range(attacker: PlayerShip, defender: EnemyShip, num: float
     max_val = int((num - armor * 0.7 - (armor - 1) * 0.6) * ram)
     return max_val, min_val
 
+def reversed_attack_power(attacker: PlayerShip, defender: EnemyShip, actual_damage: int):
+    armor = defender.ar + defender.fetch_equipment_total_stats("souk")
+    ammo_percent = attacker.ammo / fetch_ship_master(attacker.id)["api_bull_max"]
+    ram = 1 if ammo_percent >= 0.5 else ammo_percent * 2
+
+    if defender.is_submarine():
+        de_bonus = 1 if attacker.stype == STYPE.DE else 0
+
+        # Type 95 DC
+        if attacker.has_equip(226):
+            armor -= np.sqrt(2) + de_bonus
+
+        # Type 2 DC
+        if attacker.has_equip(227):
+            armor -= np.sqrt(5) + de_bonus
+            
+        armor = max(armor, 1)
+
+    min_pow = int(int(actual_damage / ram) + armor * 0.7)
+    max_pow = int(int(actual_damage / ram) + armor * 0.7 + (armor - 1) * 0.6)
+
+    return min_pow, max_pow
+
 def is_scratch(defender: EnemyShip, damage: int):
-    return damage <= int(defender.hp[0] * 0.06 + (defender.hp[0] - 1) * 0.08)
+    hp = max(defender.hp[0], 0)
+    return damage <= int(hp * 0.06 + (hp - 1) * 0.08)
 
 def handle_attack(attack: HougekiAttack, battle: Battle):
-    defender = (battle.eship_mapping if attack.side == SIDE.PLAYER else battle.fship_mapping)[attack.defender]
+    defender = (battle.eship_mapping if attack.side != SIDE.ENEMY else battle.fship_mapping if attack.side == SIDE.PLAYER else battle.friendly_fleet.ships)[attack.defender]
     defender.hp[0] -= int(attack.damage)
         
 
@@ -143,7 +167,8 @@ def raigeki_handler(rawapi: Union[dict, None], phase: str, battle: Battle):
 def midnight_handler(rawapi: Union[dict, None], phase: str, battle: Battle):
     if rawapi is None:
         return []
-
+    if phase == PHASE.FRIENDLY_SHELLING:
+        rawapi = rawapi["api_hougeki"]
     return Midnight(rawapi, phase)
 
 

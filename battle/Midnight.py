@@ -1,8 +1,9 @@
+from typing import Union
 import numpy as np
 from battle.Hougeki import apply_postcap_target_special_modifier, calculate_anti_installation_precap, calculate_base_asw_power, calculate_critical_modifier
 from battle.static import *
 from objects.Battle import Battle
-from objects.Ship import EnemyShip, PlayerShip
+from objects.Ship import EnemyShip, FriendShip, PlayerShip
 from objects.static import FORMATION, PHASE, SIDE, SPEED, STYPE
 from utils import fetch_equip_master, get_gear_improvement_stats
 
@@ -13,9 +14,9 @@ def Midnight(rawapi: dict, phase: str):
                              SPECIAL_ATTACK_ATTACKER_MAP[rawapi["api_sp_list"][idx]][attack_idx],
                     defender=rawapi["api_df_list"][idx][attack_idx],
                     damage=damage,
-                    hitstatus=rawapi["api_cl_list"][attack_idx],
+                    hitstatus=rawapi["api_cl_list"][idx][attack_idx],
                     phase=phase,
-                    night_carrier=rawapi["api_n_mother"][idx][attack_idx],
+                    night_carrier=rawapi["api_n_mother_list"][idx],
                     cutin=rawapi["api_sp_list"][idx],
                     cutin_equips=rawapi["api_si_list"][idx],
                     side=SIDE.FRIEND if phase == PHASE.FRIENDLY_SHELLING and rawapi["api_at_eflag"][idx] == 0 else rawapi["api_at_eflag"][idx])
@@ -27,13 +28,8 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
     # Assign attacker, yasen attacker can be either friendly fleet or player fleet
     if attack.side == SIDE.FRIEND:
         attacker = battle.friendly_fleet.ships[attack.attacker]
-
-    # Attacker ID is always 0-5, apply the correct mapping to find  
     else:
-        if battle.fcombined:
-            attacker = battle.player_escort_fleet.ships[attack.attacker]
-        else:
-            attacker = battle.fship_mapping[attack.attacker]
+        attacker = battle.fship_mapping[attack.attacker]
 
     defender = battle.eship_mapping[attack.defender]
 
@@ -110,10 +106,13 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
 
     return attacker, defender, int(num)
 
-def calculate_base_attack_power(attacker: PlayerShip, defender: EnemyShip, night_contact: bool):
+def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defender: EnemyShip, night_contact: bool):
 
     defender_installation = defender.speed == SPEED.NONE
-    num = attacker.visible_stats["fp"] + get_gear_improvement_stats(attacker)["yasen"]
+    if isinstance(attacker, PlayerShip):
+        num = attacker.visible_stats["fp"] + get_gear_improvement_stats(attacker)["yasen"]
+    elif isinstance(attacker, FriendShip):
+        num = attacker.fp + get_gear_improvement_stats(attacker)["yasen"] + attacker.fetch_equipment_total_stats("houg")
 
     if night_contact:
         num += 5
@@ -121,7 +120,10 @@ def calculate_base_attack_power(attacker: PlayerShip, defender: EnemyShip, night
     if defender_installation:
         num = calculate_anti_installation_precap(num, attacker, defender, False)
     else:
-        num += attacker.visible_stats["tp"]
+        if isinstance(attacker, PlayerShip):
+            num += attacker.visible_stats["tp"]
+        elif isinstance(attacker, FriendShip):
+            num += attacker.tp + attacker.fetch_equipment_total_stats("raig")
 
     return num
 
@@ -158,12 +160,15 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
     num = attacker.fp
 
     for idx, equip_id in enumerate(attacker.equip):
+
+        if equip_id == -1:
+            continue
+
         special_bomber = equip_id in SPECIAL_NIGHT_BOMBER_IDS
         master = fetch_equip_master(equip_id)
         night_bomber = master["api_type"][3] in NIGHT_BOMBER_TYPE3_IDS
-
         slot_size = attacker.slot[idx]
-        stars = max(attacker.stars, 0)
+        stars = max(attacker.stars[idx], 0)
         
         if slot_size > 0 and (special_bomber or night_bomber):
             num += master["api_houg"]
@@ -308,4 +313,4 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
         elif battle.engagement == ENGAGEMENT.RED_T:
             cutin_modifier *= 0.75
 
-    return cutin_modifier    
+    return cutin_modifier
