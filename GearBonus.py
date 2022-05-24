@@ -10,7 +10,7 @@ with open("./data/KC3GearBonus.json") as r:
     data = json.load(r)
 
 bonus_gear_ids = list(data.keys())
-
+country_ctype_map = data["countryCtypeMap"]
 
 def calculate_bonus_gear_stats(ship):
     result = {
@@ -147,6 +147,26 @@ def add_bonus(bonus, result, ship, synergy):
                 add_stats(bdef, ship, result, synergy, bonus)
         else:
             add_stats(bonus_definition, ship, result, synergy, bonus)
+
+    if "byNation" in bonus:
+        nation_name = next(k for k, v in country_ctype_map.items() if ctype in v)
+        bonus_definition = bonus["byNation"]
+
+        # In case ctype map not updated yet
+        if nation_name and nation_name in bonus_definition:
+            bdef = bonus_definition[nation_name]
+
+            if isinstance(bdef, str):
+                add_stats(bonus_definition[bdef], ship, result, synergy, bonus)
+
+            elif isinstance(bdef, int):
+                add_stats(bonus["byClass"][str(bdef)], ship, result, synergy, bonus)
+
+            elif isinstance(bdef, list):
+                for v in bdef:
+                    add_stats(v, ship, result, synergy, bonus)
+            else:
+                add_stats(bdef, ship, result, synergy, bonus)
 
 
 def add_stats(bonus_definition, ship, result, synergy, bonus):
