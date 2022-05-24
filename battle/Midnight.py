@@ -45,7 +45,7 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
     defender = battle.eship_mapping[attack.defender]
 
     defender_submarine = defender.is_submarine()
-    night_contact = battle.contact > 0
+    night_contact = battle.contact > 0 and attack.phase != PHASE.FRIENDLY_SHELLING
     ark_royal_legacy = False
 
     if attack.night_carrier:
