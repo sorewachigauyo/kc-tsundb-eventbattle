@@ -4,7 +4,7 @@ from functools import reduce
 import numpy as np
 
 #lang = "en"
-FIGHTER_BOMBER_ID = [60, 154, 219]
+FIGHTER_BOMBER_ID = [60, 154, 219, 447]
 SEC_GUN_FILTER = [11, 134, 135]
 T2_FP_LIST = [1, 2, 18, 19, 21, 24, 29, 42, 36, 37, 39, 46]
 BOMBER_TYPE2_ID = [7, 8, 11, 41, 47, 53, 57, 58]
