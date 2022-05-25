@@ -19,12 +19,14 @@ class Battle:
 
         self.player_fleet = PlayerFleet(playerformation, fleet["fleet1"], rawapi["api_fParam"], rawapi["api_f_nowhps"],
                                         rawapi["api_f_maxhps"], self.fcombined)
+        self.player_escort_fleet = None
 
         for idx, ship in enumerate(self.player_fleet.ships):
             self.fship_mapping[idx] = ship
 
         self.enemy_fleet = EnemyFleet(rawapi["api_formation"][1], rawapi["api_ship_ke"], rawapi["api_ship_lv"], rawapi["api_eParam"],
                                       rawapi["api_eSlot"], rawapi["api_e_nowhps"], rawapi["api_e_maxhps"], is_combined=self.ecombined)
+        self.enemy_escort_fleet = None
 
         for idx, ship in enumerate(self.enemy_fleet.ships):
             self.eship_mapping[idx] = ship
@@ -46,6 +48,7 @@ class Battle:
             for idx, ship in enumerate(self.enemy_escort_fleet.ships):
                 self.eship_mapping[idx + 6] = ship
 
+        self.friendly_fleet = None
         if "api_friendly_info" in rawapi:
             self.friendly_fleet = FriendFleet(
                 playerformation=playerformation, **rawapi["api_friendly_info"])
@@ -62,9 +65,8 @@ class Battle:
             self.active_deck = rawapi["api_active_deck"]
 
     def resupply_fleet(self, combined: bool):
-        num, numc = 0.125, 0.025 if combined else 0.11, 0.14
-        rcount = min(reduce(lambda x, y: x + y.count_equip(146),
+        resupply_mod, resupply_constant = 0.125, 0.025 if combined else 0.11, 0.14
+        underway_replenishment_count = min(reduce(lambda x, y: x + y.count_equip(146),
                      self.fship_mapping.values(), 0), 3)
 
-        def f(x): return x.resupply(num * rcount + numc)
-        map(f, self.fship_mapping.values())
+        map(lambda x: x.resupply(resupply_mod * underway_replenishment_count + resupply_constant), self.fship_mapping.values())

@@ -35,7 +35,7 @@ class PlayerShip(Ship):
         self.ctype = master["api_ctype"]
         self.speed = master["api_soku"]
 
-    def resupply(self, amount):
+    def resupply(self, amount: float):
         master = fetch_ship_master(self.id)
         fuel_max = master["api_fuel_max"]
         ammo_max = master["api_bull_max"]
