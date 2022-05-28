@@ -50,7 +50,15 @@ def process_raigeki(attack: RaigekiAttack, battle: Battle):
     num *= formation_modifier
 
     # Damage mod
-    damage_modifier = DAMAGE_MODIFIER_RAIGEKI[int(attacker.hp[0] / attacker.hp[1] * 4)]
+    hpercent = attacker.hp[0] / attacker.hp[1]
+    if hpercent == 1:
+        damage_modifier = DAMAGE_MODIFIER_RAIGEKI[4]
+    elif hpercent <= 0.25:
+        damage_modifier = DAMAGE_MODIFIER_RAIGEKI[0]
+    elif hpercent <= 0.5:
+        damage_modifier = DAMAGE_MODIFIER_RAIGEKI[1]
+    else:
+        damage_modifier = DAMAGE_MODIFIER_RAIGEKI[2]
     num *= damage_modifier
 
     # Apply damage cap

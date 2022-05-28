@@ -127,8 +127,8 @@ def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defende
         num = attacker.visible_stats["fp"] + \
             get_gear_improvement_stats(attacker)["yasen"]
     elif isinstance(attacker, FriendShip):
-        num = attacker.fp + get_gear_improvement_stats(
-            attacker)["yasen"] + attacker.fetch_equipment_total_stats("houg")
+        num = attacker.fp + attacker.fetch_equipment_total_stats(
+            attacker)["yasen"]
 
     if night_contact:
         num += 5

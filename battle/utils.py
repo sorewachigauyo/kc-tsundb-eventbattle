@@ -69,7 +69,7 @@ def handle_attack(attack: HougekiAttack, battle: Battle):
                 PHASE.FRIENDLY_SHELLING else battle.friendly_fleet.ships)[attack.defender]
     defender.hp[0] -= int(attack.damage)
 
-    if defender.hp[0] < 0 and 43 in defender.equip:
+    if defender.hp[0] <= 0 and 43 in defender.equip:
         defender.hp[0] = defender.hp[1]
         defender.ammo = fetch_ship_master(defender.id)["api_bull_max"]
 

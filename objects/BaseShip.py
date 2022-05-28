@@ -87,9 +87,9 @@ class Ship:
 
     def count_equip_by_type(self, equip_type: Union[int, List[int]], type_filter: int):
         if isinstance(equip_type, int):
-            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] == equip_type), self.equip, 0)
+            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] == equip_type if y > 0 else 0), self.equip, 0)
         elif isinstance(equip_type, list):
-            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] in equip_type), self.equip, 0)
+            return reduce(lambda x, y: x + (fetch_equip_master(y)["api_type"][type_filter] in equip_type if y > 0 else 0), self.equip, 0)
 
     def has_equip(self, equip_id: Union[int, List[int]]):
         if isinstance(equip_id, int):
