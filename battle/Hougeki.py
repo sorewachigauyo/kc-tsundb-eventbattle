@@ -66,8 +66,15 @@ def process_hougeki(attack: HougekiAttack, battle: Battle):
     num *= formation_modifier * engagement_modifier
 
     # Apply health damage modifier
-    damage_modifier = DEFAULT_DAMAGE_MODIFIER[int(
-        attacker.hp[0] / attacker.hp[1] * 4)]
+    hpercent = attacker.hp[0] / attacker.hp[1]
+    if hpercent == 1:
+        damage_modifier = DEFAULT_DAMAGE_MODIFIER[4]
+    elif hpercent <= 0.25:
+        damage_modifier = DEFAULT_DAMAGE_MODIFIER[0]
+    elif hpercent <= 0.5:
+        damage_modifier = DEFAULT_DAMAGE_MODIFIER[1]
+    else:
+        damage_modifier = DEFAULT_DAMAGE_MODIFIER[2]
     num *= damage_modifier
 
     # Apply invisible firepower fits
@@ -238,7 +245,6 @@ def calculate_base_attack_power(ship: PlayerShip, target: EnemyShip):
 
 def calculate_base_asw_power(ship: PlayerShip):
     aerial_attack = ship.uses_carrier_asw_shelling()
-
     # Base attack constant
     num = 8 if aerial_attack else 13
 
@@ -256,6 +262,7 @@ def calculate_base_asw_power(ship: PlayerShip):
         "tais", True, return_visible_bonus_only=True)
     eq_asw += eq_asw_bonus
     num += 1.5 * eq_asw
+    #num += eq_asw_bonus
 
     # Base ship ASW
     base_asw = ship.visible_stats["as"] - \
@@ -267,15 +274,15 @@ def calculate_base_asw_power(ship: PlayerShip):
 
     # ASW equip synergy
     synergy_modifier = 1
-    has_dc = ship.count_equip([226, 227, 378, 439])
-    has_dcp = ship.count_equip([44, 45, 287, 288, 377])
+    has_dc = ship.has_equip([226, 227, 378, 439])
+    has_dcp = ship.has_equip([44, 45, 287, 288, 377])
 
     # DC + DCP
     if has_dc and has_dcp:
         synergy_modifier = 1.1
 
         # Small Sonar + DC + DCP
-        if ship.has_equip_type(4, 2):
+        if ship.has_equip_type(14, 2):
             synergy_modifier = 1.25
 
     # Legacy synergy
