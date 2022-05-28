@@ -59,8 +59,11 @@ def reversed_attack_power(attacker: PlayerShip, defender: EnemyShip, actual_dama
     return min_pow, max_pow
 
 
-def is_scratch(defender: EnemyShip, damage: int):
-    hp = max(defender.hp[0], 0)
+def is_scratch(defender: EnemyShip, damage: int, raigeki_hp=None):
+    if raigeki_hp:
+        hp = raigeki_hp
+    else:
+        hp = max(defender.hp[0], 0)
     return damage <= int(hp * 0.06 + (hp - 1) * 0.08)
 
 
@@ -145,10 +148,10 @@ def kouku_handler(rawapi: Union[dict, None], phase: str, battle: Battle) -> List
 
         if battle.ecombined:
             res += Kouku(rawapi["api_stage3_combined"],
-                         phase, side=SIDE.PLAYER)
+                         phase, side=SIDE.PLAYER, combined=True)
 
         if battle.fcombined:
-            res += Kouku(rawapi["api_stage3_combined"], phase, side=SIDE.ENEMY)
+            res += Kouku(rawapi["api_stage3_combined"], phase, side=SIDE.ENEMY, combined=True)
 
     return res
 

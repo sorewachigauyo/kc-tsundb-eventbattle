@@ -6,8 +6,8 @@ class SIDE:
 
 class FLEETTYPE:
     SINGLE = 0
-    STF = 1
-    CTF = 2
+    CTF = 1
+    STF = 2
     TCF = 3
     ENEMYCOMBINED = 4
 

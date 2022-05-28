@@ -186,26 +186,27 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
         special_bomber = equip_id in SPECIAL_NIGHT_BOMBER_IDS
         master = fetch_equip_master(equip_id)
         night_bomber = master["api_type"][3] in NIGHT_BOMBER_TYPE3_IDS
-        slot_size = attacker.slot[idx]
         stars = max(attacker.stars[idx], 0)
 
-        if slot_size > 0 and (special_bomber or night_bomber):
-            num += master["api_houg"]
+        if (special_bomber or night_bomber):
+            slot_size = attacker.slot[idx]
+            if slot_size > 0:
+                num += master["api_houg"]
 
-            if not defender_installation:
-                num += master["api_raig"]
+                if not defender_installation:
+                    num += master["api_raig"]
 
-            if special_bomber:
-                num += master["api_baku"]
-                mod = 0.3
+                if special_bomber:
+                    num += master["api_baku"]
+                    mod = 0.3
 
-            elif night_bomber:
-                num += 3 * slot_size
-                mod = 0.45
+                elif night_bomber:
+                    num += 3 * slot_size
+                    mod = 0.45
 
-            num += np.sqrt(slot_size) * mod * (
-                master["api_baku"] + master["api_houg"] + master["api_raig"] + master["api_tais"])
-            num += np.sqrt(stars)
+                num += np.sqrt(slot_size) * mod * (
+                    master["api_baku"] + master["api_houg"] + master["api_raig"] + master["api_tais"])
+                num += np.sqrt(stars)
 
     if night_contact:
         num += 5
