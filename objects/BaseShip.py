@@ -95,7 +95,7 @@ class Ship:
         if isinstance(equip_id, int):
             return equip_id in self.equip
         elif isinstance(equip_id, list):
-            return next((eq_id for eq_id in self.equip if eq_id in equip_id), False)
+            return bool(next((eq_id for eq_id in self.equip if eq_id in equip_id), False))
 
     def has_equip_type(self, equip_type: Union[int, List[int]], type_filter: int):
         if isinstance(equip_type, int):

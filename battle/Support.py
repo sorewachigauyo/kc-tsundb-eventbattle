@@ -24,7 +24,7 @@ def SupportKouku(rawapi: dict, phase: str):
         KoukuAttackSupport(
             defender=ship_idx,
             damage=damage,
-            hitstatus=HITSTATUS.CRITICAL if rawapi["api_ecl"][ship_idx] else HITSTATUS.HIT,
+            hitstatus=HITSTATUS.CRITICAL if rawapi["api_ecl_flag"][ship_idx] else HITSTATUS.HIT,
             phase=phase,
             db=rawapi["api_ebak_flag"][ship_idx] == 1,
             tb=rawapi["api_erai_flag"][ship_idx] == 1,

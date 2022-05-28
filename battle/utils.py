@@ -22,12 +22,10 @@ def calculate_damage_range(attacker: PlayerShip, defender: EnemyShip, num: float
         de_bonus = 1 if attacker.stype == STYPE.DE else 0
 
         # Type 95 DC
-        if attacker.has_equip(226):
-            armor -= np.sqrt(2) + de_bonus
+        armor -= attacker.count_equip(226) * (np.sqrt(2) + de_bonus)
 
         # Type 2 DC
-        if attacker.has_equip(227):
-            armor -= np.sqrt(5) + de_bonus
+        armor -= attacker.count_equip(227) * (np.sqrt(5) + de_bonus)
 
         armor = max(armor, 1)
 
@@ -67,9 +65,13 @@ def is_scratch(defender: EnemyShip, damage: int):
 
 
 def handle_attack(attack: HougekiAttack, battle: Battle):
-    defender = (battle.eship_mapping if attack.side != SIDE.ENEMY else battle.fship_mapping if attack.side ==
-                SIDE.PLAYER else battle.friendly_fleet.ships)[attack.defender]
+    defender = (battle.eship_mapping if attack.side != SIDE.ENEMY else battle.fship_mapping if attack.phase !=
+                PHASE.FRIENDLY_SHELLING else battle.friendly_fleet.ships)[attack.defender]
     defender.hp[0] -= int(attack.damage)
+
+    if defender.hp[0] < 0 and 43 in defender.equip:
+        defender.hp[0] = defender.hp[1]
+        defender.ammo = fetch_ship_master(defender.id)["api_bull_max"]
 
 
 def handle_battle(battle: Battle, rawapi: dict) -> List[Union[HougekiAttack, HouraiAttackSupport, KoukuAttack, KoukuAttackLB, KoukuAttackSupport, RaigekiAttack, MidnightAttack]]:

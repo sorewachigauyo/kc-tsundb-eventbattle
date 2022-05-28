@@ -77,7 +77,7 @@ def get_gear_improvement_stats(ship):
                 result["fp"] += np.sqrt(improvement)
                 result["yasen"] += np.sqrt(improvement)
             else:
-                mod = 0.2 if master.api_type[3] == 16 else 0.3
+                mod = 0.2 if master["api_type"][3] == 16 else 0.3
                 result["fp"] += mod * improvement
                 result["yasen"] += mod * improvement
         # F/B and Jet F/B
@@ -107,7 +107,7 @@ def get_gear_improvement_stats(ship):
         elif type2 == 8 or type2 == 58:
             result["asw"] += 0.2 * improvement
         elif type2 == 25:
-            mod = 0.3 if master.api_tais > 10 else 0.2
+            mod = 0.3 if master["api_tais"] > 10 else 0.2
             result["asw"] += mod * improvement
 
         # Yasen

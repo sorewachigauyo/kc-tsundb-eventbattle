@@ -58,11 +58,9 @@ class Battle:
 
         # Get night contact plane if battle is at night
         self.contact = -1
-        self.active_deck = [1, 1]
         if self.battletype in [BATTLETYPE.NIGHT, BATTLETYPE.NIGHT_START, BATTLETYPE.COMBINED_NIGHT,
                                BATTLETYPE.COMBINED_NIGHT_START, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT_TO_DAY]:
             self.contact = int(rawapi["api_touch_plane"][0])
-            self.active_deck = rawapi["api_active_deck"]
 
     def resupply_fleet(self, combined: bool):
         resupply_mod, resupply_constant = 0.125, 0.025 if combined else 0.11, 0.14

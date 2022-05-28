@@ -263,9 +263,9 @@ YASEN_CUTIN_MODIFIER = {
 YASEN_DDCI_TYPE_D_MODIFIER = [1, 1.25, 1.4]
 
 KOUKU_SIDE_TERMS = [
-    ["api_edam", "api_ecl", "api_ebak_flag", "api_erai_flag"],
-    ["api_fdam", "api_fcl", "api_fbak_flag", "api_frai_flag"],
-    ["api_edam", "api_ecl", "api_ebak_flag", "api_erai_flag"]
+    ["api_edam", "api_ecl_flag", "api_ebak_flag", "api_erai_flag"],
+    ["api_fdam", "api_fcl_flag", "api_fbak_flag", "api_frai_flag"],
+    ["api_edam", "api_ecl_flag", "api_ebak_flag", "api_erai_flag"]
 ]
 
 
