@@ -2248,12 +2248,32 @@
         "454": {
             "icon": 48,
             "jp": "キ102乙改+イ号一型乙 誘導弾",
-            "en": "キ102乙改+イ号一型乙 誘導弾"
+            "en": "Ki-102 B Kai + No.1 Model 1B Guided Missile"
         },
         "455": {
             "icon": 1,
             "jp": "試製 長12.7cm連装砲A型改四",
-            "en": "試製 長12.7cm連装砲A型改四"
+            "en": "Prototype Long-barrel 12.7cm Twin Gun Mount Model A Kai 4"
+        },
+        "456": {
+            "icon": 11,
+            "jp": "SG レーダー(後期型)",
+            "en": "SG Radar (Late Model)"
+        },
+        "457": {
+            "icon": 5,
+            "jp": "後期型艦首魚雷(4門)",
+            "en": "後期型艦首魚雷(4門)"
+        },
+        "458": {
+            "icon": 42,
+            "jp": "後期型電探&逆探+シュノーケル装備",
+            "en": "後期型電探&逆探+シュノーケル装備"
+        },
+        "459": {
+            "icon": 37,
+            "jp": "B-25",
+            "en": "B-25"
         },
         "501": {
             "icon": 1,
@@ -2875,10 +2895,25 @@
             "jp": "深海五連装(酸素)魚雷後期型",
             "en": "Abyssal Quintuple (Oxygen) Torpedo Mount Late Model"
         },
+        "625": {
+            "icon": 7,
+            "jp": "深海双発陸爆",
+            "en": "深海双発陸爆"
+        },
+        "626": {
+            "icon": 7,
+            "jp": "深海双発陸爆Ace",
+            "en": "深海双発陸爆Ace"
+        },
+        "627": {
+            "icon": 1,
+            "jp": "深海5inch連装砲C型",
+            "en": "Abyssal 5inch Twin Gun Mount Model C"
+        },
         "630": {
             "icon": 37,
             "jp": "深海空超要塞",
-            "en": "Aybssal Sky Super Fortress"
+            "en": "Abyssal Sky Super Fortress"
         },
         "631": {
             "icon": 37,
@@ -5423,6 +5458,10 @@
             "jp": "曙改二",
             "en": "Akebono Kai Ni"
         },
+        "666": {
+            "jp": "磯波改二",
+            "en": "Isonami Kai Ni"
+        },
         "667": {
             "jp": "山風改二丁",
             "en": "Yamakaze Kai Ni D"
@@ -5599,6 +5638,14 @@
             "jp": "玉波改",
             "en": "Tamanami Kai"
         },
+        "719": {
+            "jp": "伊201改",
+            "en": "伊201 Kai"
+        },
+        "720": {
+            "jp": "早潮改",
+            "en": "Hayashio Kai"
+        },
         "877": {
             "jp": "Conte di Cavour",
             "en": "Conte di Cavour"
@@ -5610,6 +5657,10 @@
         "879": {
             "jp": "Conte di Cavour nuovo",
             "en": "Conte di Cavour Nuovo"
+        },
+        "881": {
+            "jp": "伊201",
+            "en": "伊201"
         },
         "882": {
             "jp": "伊203",
@@ -5626,6 +5677,10 @@
         "885": {
             "jp": "Victorious",
             "en": "Victorious"
+        },
+        "886": {
+            "jp": "早潮",
+            "en": "Hayashio"
         },
         "887": {
             "jp": "伊203改",
@@ -7994,6 +8049,46 @@
         "2090": {
             "jp": "重巡ネ級改",
             "en": "Ne-Class Heavy Cruiser Kai"
+        },
+        "2091": {
+            "jp": "飛行場姫(哨戒機配備)",
+            "en": "飛行場姫(哨戒機配備)"
+        },
+        "2092": {
+            "jp": "飛行場姫(哨戒機配備)",
+            "en": "飛行場姫(哨戒機配備)"
+        },
+        "2093": {
+            "jp": "飛行場姫(哨戒機配備)",
+            "en": "飛行場姫(哨戒機配備)"
+        },
+        "2094": {
+            "jp": "飛行場姫",
+            "en": "Airfield Princess"
+        },
+        "2095": {
+            "jp": "飛行場姫",
+            "en": "Airfield Princess"
+        },
+        "2096": {
+            "jp": "飛行場姫",
+            "en": "Airfield Princess"
+        },
+        "2097": {
+            "jp": "外南洋駆逐棲姫",
+            "en": "外南洋駆逐棲姫"
+        },
+        "2098": {
+            "jp": "外南洋駆逐棲姫",
+            "en": "外南洋駆逐棲姫"
+        },
+        "2099": {
+            "jp": "外南洋駆逐棲姫-壊",
+            "en": "外南洋駆逐棲姫 (Damaged)"
+        },
+        "2100": {
+            "jp": "外南洋駆逐棲姫-壊",
+            "en": "外南洋駆逐棲姫 (Damaged)"
         }
     }
 }

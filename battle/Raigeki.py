@@ -1,9 +1,9 @@
 import numpy as np
-from battle.Hougeki import apply_postcap_target_special_modifier, determine_combined_fleet_factor
+from battle.Hougeki import apply_postcap_target_special_modifier
 from battle.static import DAMAGE_MODIFIER_RAIGEKI, ENGAGEMENT_MODIFIERS, HITSTATUS, RAIGEKI_CAP, RAIGEKI_FORMATION_MODIFIER, RaigekiAttack
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
-from objects.static import SIDE
+from objects.static import FLEETTYPE, SIDE
 from utils import get_gear_improvement_stats
 
 def Raigeki(rawapi: dict, phase: str):
@@ -77,3 +77,24 @@ def process_raigeki(attack: RaigekiAttack, battle: Battle):
 def calculate_base_attack_power(attacker: PlayerShip, defender: EnemyShip):
     cf_factor = determine_combined_fleet_factor(attacker, defender)
     return attacker.visible_stats["tp"] + cf_factor + get_gear_improvement_stats(attacker)["tp"] + 5
+
+def determine_combined_fleet_factor(attacker: PlayerShip, defender: EnemyShip):
+    if defender.fleet.fleet_type == FLEETTYPE.ENEMYCOMBINED:
+        if attacker.fleet.fleet_type == FLEETTYPE.CTF:
+            return 10
+        elif attacker.fleet.fleet_type == FLEETTYPE.STF:
+            return 10
+        elif attacker.fleet.fleet_type == FLEETTYPE.tcf:
+            return 10
+        else:
+            return 10
+
+    else:
+        if attacker.fleet.fleet_type == FLEETTYPE.CTF:
+            return -5
+        elif attacker.fleet.fleet_type == FLEETTYPE.STF:
+            return -5
+        elif attacker.fleet.fleet_type == FLEETTYPE.TCF:
+            return -5
+        else:
+            return 0
