@@ -63,7 +63,7 @@ class Battle:
             self.contact = int(rawapi["api_touch_plane"][0])
 
     def resupply_fleet(self, combined: bool):
-        resupply_mod, resupply_constant = 0.125, 0.025 if combined else 0.11, 0.14
+        resupply_mod, resupply_constant = (0.125, 0.025) if combined else (0.11, 0.14)
         underway_replenishment_count = min(reduce(lambda x, y: x + y.count_equip(146),
                      self.fship_mapping.values(), 0), 3)
 

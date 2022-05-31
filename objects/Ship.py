@@ -52,7 +52,7 @@ class PlayerShip(Ship):
         if self.id == 717 or self.id == 352:
             for idx, equip_id in enumerate(self.equip):
                 if equip_id == -1:
-                    pass
+                    continue
                 master = fetch_equip_master(equip_id)
                 if master.get("api_type")[2] in [7, 8] and self.slot[idx] > 0:
                     return True
