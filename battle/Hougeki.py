@@ -161,7 +161,7 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
             cutin_modifier *= 1.4 if thirdshot else 1.2
 
         # Mutsu Kai partner bonus
-        elif partner_ship_id == 276:
+        elif partner_ship_id == 276 or partner_ship_id == 81:
             cutin_modifier *= 1.35 if thirdshot else 1.15
 
         # Nelson Kai partner bonus
@@ -179,12 +179,16 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
 
     elif attack.cutin == HOUGEKI_CUTIN.MUTSU_SPECIAL:
         thirdshot = attacker.id != 573
+        partner_ship_id = attacker.fleet.ships[1].id
         if thirdshot:
             cutin_modifier = 1.2
 
         # Nagato K2 partner bonus
-        if attacker.fleet.ships[1].id == 541:
+        if partner_ship_id == 541:
             cutin_modifier *= 1.4 if thirdshot else 1.2
+            
+        elif partner_ship_id == 275 or partner_ship_id == 80:
+            cutin_modifier *= 1.35 if thirdshot else 1.15
 
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
@@ -313,12 +317,12 @@ def determine_combined_fleet_factor(attacker: PlayerShip, target: EnemyShip):
     else:
         # CTF vs CF
         if attacker.fleet.fleet_type == FLEETTYPE.CTF:
-            return 2 if is_main else 10
+            return 2 if is_main else -5
         # STF vs CF
         elif attacker.fleet.fleet_type == FLEETTYPE.STF:
-            return 10 if is_main else -5
+            return 2 if is_main else -5
         # TCF vs CF
-        elif attacker.fleet.fleet_type == FLEETTYPE.CTF:
+        elif attacker.fleet.fleet_type == FLEETTYPE.TCF:
             return -5
         # Single vs CF
         else:

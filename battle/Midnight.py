@@ -281,7 +281,7 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.4 if thirdshot else 1.2
 
         # Mutsu Kai partner bonus
-        elif partner_ship_id == 276:
+        elif partner_ship_id == 276 or partner_ship_id == 81:
             cutin_modifier *= 1.35 if thirdshot else 1.15
 
         # Nelson Kai partner bonus
@@ -299,16 +299,16 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
 
     elif attack.cutin == YASEN_CUTIN.MUTSU_SPECIAL:
         thirdshot = attacker.id != 573
+        partner_ship_id = attacker.fleet.ships[1].id
         if thirdshot:
             cutin_modifier = 1.2
 
         # Nagato K2 partner bonus
-        if attacker.fleet.ships[1].id == 541:
+        if partner_ship_id == 541:
             cutin_modifier *= 1.4 if thirdshot else 1.2
-
-        # AP Shell bonus
-        if attacker.has_equip_type(19, 2):
-            cutin_modifier *= 1.35
+            
+        elif partner_ship_id == 275 or partner_ship_id == 80:
+            cutin_modifier *= 1.35 if thirdshot else 1.15
 
         # Radar bonus
         if next((eq_id for eq_id in attacker.equip if eq_id > -1 if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
