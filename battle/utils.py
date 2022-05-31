@@ -8,7 +8,7 @@ from battle.Support import SupportHourai, SupportKouku
 from battle.static import HougekiAttack, HouraiAttackSupport, KoukuAttack, KoukuAttackLB, KoukuAttackSupport, RaigekiAttack, MidnightAttack
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
-from objects.static import BATTLEORDER, PHASE, SIDE, STYPE
+from objects.static import BATTLEORDER, FLEETTYPE, PHASE, SIDE, STYPE
 from utils import fetch_ship_master
 
 
@@ -189,7 +189,10 @@ def midnight_handler(rawapi: Union[dict, None], phase: str, battle: Battle):
         return []
     if phase == PHASE.FRIENDLY_SHELLING:
         rawapi = rawapi["api_hougeki"]
-    return Midnight(rawapi, phase)
+    combined = battle.player_fleet.fleet_type != FLEETTYPE.SINGLE
+    if None in rawapi.values():
+        return []
+    return Midnight(rawapi, phase, combined)
 
 
 phase_handlers = {

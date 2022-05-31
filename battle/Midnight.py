@@ -8,11 +8,11 @@ from objects.static import FORMATION, PHASE, SIDE, SPEED, STYPE
 from utils import fetch_equip_master, get_gear_improvement_stats
 
 
-def Midnight(rawapi: dict, phase: str):
+def Midnight(rawapi: dict, phase: str, combined=False):
     return [
         MidnightAttack(
-            attacker=attacker if attacker not in SPECIAL_ATTACK_IDS else SPECIAL_ATTACK_ATTACKER_MAP[
-                cutin][idx],
+            attacker=attacker if cutin not in SPECIAL_ATTACK_IDS else (SPECIAL_ATTACK_ATTACKER_MAP[
+                cutin][idx] + (6 if combined else 0)),
             defender=defender[idx],
             damage=damage,
             hitstatus=hitstatus[idx],
@@ -293,7 +293,7 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.35
 
         # Radar
-        if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
@@ -311,7 +311,7 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.35
 
         # Radar bonus
-        if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
@@ -328,7 +328,7 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.35
 
         # Radar bonus
-        if next((eq_id for eq_id in attacker.equip if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
