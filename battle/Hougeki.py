@@ -200,7 +200,7 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
             cutin_modifier *= 1.15
 
     elif attack.cutin == HOUGEKI_CUTIN.COLORADO_SPECIAL:
-        if attacker.id != 601 or attacker.id != 1496:
+        if attacker.id != 601 and attacker.id != 1496:
             cutin_modifier = 1.2
 
             # Big 7 partner bonus
