@@ -240,8 +240,9 @@ def add_stats(bonus_definition, ship, result, synergy, bonus):
                         gear_count = count
                     else:
                         gear_count = synergy[gear_name]
-                    _add_stats(
-                        result, synergy_bonus["byCount"][str(gear_count)])
+                    if str(gear_count) in synergy_bonus["byCount"]:
+                        _add_stats(
+                            result, synergy_bonus["byCount"][str(gear_count)])
 
 
 def _add_stats(dict1, dict2, num=1):

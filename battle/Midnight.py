@@ -227,7 +227,7 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
 
     # Subarmine TCI adjustment
     if attacker.is_submarine() and attack.cutin == YASEN_CUTIN.TORP_TORP_CUTIN:
-        late_torpedo_count = attacker.count_equip([213, 214, 383, 441, 443])
+        late_torpedo_count = attacker.count_equip([213, 214, 383, 441, 443, 457])
 
         if attacker.has_equip_type(51, 2) and late_torpedo_count:
             cutin_modifier = 1.75

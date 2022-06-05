@@ -323,6 +323,7 @@ class KoukuAttackLB:
     phase: str
     db: bool
     tb: bool
+    skipbomber: bool
     wave: int
     side: int
 

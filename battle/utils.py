@@ -215,3 +215,10 @@ phase_handlers = {
     PHASE.NIGHT_SHELLING: midnight_handler,
     PHASE.NIGHT_SHELLING2: midnight_handler,
 }
+
+def handle_airbattle_only(battle: Battle, rawapi: dict):
+    if PHASE.LAND_BASE not in rawapi:
+        return None
+    attacks = lb_handler(rawapi.get(PHASE.LAND_BASE), PHASE.LAND_BASE, battle)
+    return ([attack for phase_attacks in ([phase_handlers[phase](rawapi.get(phase), phase, battle) for phase in [PHASE.LAND_BASE_JET, PHASE.JET]]) for attack in phase_attacks], 
+        [([attack for attack in attacks if attack.wave == wavenum], rawapi.get(PHASE.LAND_BASE)[wavenum]) for wavenum in range(len(rawapi.get(PHASE.LAND_BASE)))])

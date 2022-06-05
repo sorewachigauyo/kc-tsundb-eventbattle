@@ -1,4 +1,5 @@
 from functools import reduce
+from objects.LandBase import LandBase
 from objects.Fleet import PlayerFleet, EnemyFleet, FriendFleet
 from objects.static import BATTLETYPE, FLEETTYPE
 from objects.Ship import EnemyShip, PlayerShip
@@ -61,6 +62,10 @@ class Battle:
         if self.battletype in [BATTLETYPE.NIGHT, BATTLETYPE.NIGHT_START, BATTLETYPE.COMBINED_NIGHT,
                                BATTLETYPE.COMBINED_NIGHT_START, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT, BATTLETYPE.SINGLE_VS_COMBINED_NIGHT_TO_DAY]:
             self.contact = int(rawapi["api_touch_plane"][0])
+
+        self.bases = []
+        if "lbas" in fleet:
+            self.bases = [LandBase(**r) for r in fleet["lbas"]]
 
     def resupply_fleet(self, combined: bool):
         resupply_mod, resupply_constant = (0.125, 0.025) if combined else (0.11, 0.14)

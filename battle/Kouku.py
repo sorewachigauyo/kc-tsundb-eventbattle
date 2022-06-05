@@ -29,6 +29,7 @@ def LBKouku(rawapi: dict, phase: str, wave: int, combined=False):
             phase=phase,
             db=rawapi["api_ebak_flag"][ship_idx] == 1,
             tb=rawapi["api_erai_flag"][ship_idx] == 1,
+            skipbomber=rawapi["api_e_sp_list"][ship_idx] is not None,
             wave=wave,
             side=SIDE.PLAYER
         ) for ship_idx, damage in enumerate(rawapi["api_edam"])
