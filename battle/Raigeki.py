@@ -84,7 +84,7 @@ def determine_combined_fleet_factor(attacker: PlayerShip, defender: EnemyShip):
             return 10
         elif attacker.fleet.fleet_type == FLEETTYPE.STF:
             return 10
-        elif attacker.fleet.fleet_type == FLEETTYPE.tcf:
+        elif attacker.fleet.fleet_type == FLEETTYPE.TCF:
             return 10
         else:
             return 10

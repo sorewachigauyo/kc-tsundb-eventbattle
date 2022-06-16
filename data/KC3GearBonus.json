@@ -26,6 +26,25 @@
 			}
 		}
 	},
+	"12": {
+		"count": 0,
+		"byClass": {
+			"37": {
+				"multiple": {
+					"houg": 1,
+					"houk": 1,
+					"houm": 1
+				},
+				"synergy": {
+					"flags": ["rangefinderAirRadar"],
+					"single": {
+						"houk": 1,
+						"houm": 1
+					}
+				}
+			}
+		}
+	},
 	"15": {
 		"count": 0,
 		"byClass": {
@@ -181,8 +200,8 @@
 				}
 			}]
 		}, {
-			"origins": [181, 440, 90, 91, 404, 331, 78, 79, 85, 86, 137, 138, 139, 140],
-			"excludes": [662],
+			"origins": [181, 440, 90, 91, 404, 331, 78, 79, 85, 86, 137, 138, 139, 140, 131],
+			"excludes": [662, 131, 136, 916],
 			"synergy": [{
 				"flags": ["enhancedBoiler"],
 				"single": {
@@ -357,7 +376,7 @@
 			}]
 		}, {
 			"origins": [131, 143, 80, 81],
-			"excludes": [80, 275, 81, 276],
+			"excludes": [80, 275, 81, 276, 911],
 			"synergy": [{
 				"flags": ["enhancedBoiler"],
 				"single": {
@@ -516,7 +535,7 @@
 				}
 			}]
 		}, {
-			"origins": [182, 460, 161, 126, 127, 128, 191, 483, 493, 155, 494, 495, 636, 431, 539, 163, 882, 299],
+			"origins": [182, 460, 161, 126, 127, 128, 191, 483, 493, 155, 494, 495, 636, 431, 539, 163, 881, 882, 299],
 			"synergy": [{
 				"flags": ["enhancedBoiler"],
 				"single": {
@@ -1467,7 +1486,7 @@
 	"106": {
 		"count": 0,
 		"byShip": [{
-			"ids": [407, 145, 419, 151, 541],
+			"ids": [407, 145, 419, 151, 541, 911, 916],
 			"multiple": {
 				"houg": 1,
 				"tyku": 2,
@@ -1623,6 +1642,34 @@
 				}
 			}]
 		}]
+	},
+	"128": {
+		"count": 0,
+		"byClass": {
+			"37": {
+				"synergy": {
+					"flags": ["twin51cmLargeGunMountNonexist", "rangefinderAirRadar"],
+					"single": {
+						"houg": 1,
+						"houm": 2
+					}
+				}
+			}
+		},
+		"byShip": {
+			"ids": [911, 916, 546],
+			"multiple": {
+				"houg": 1,
+				"houm": 1
+			},
+			"synergy": {
+				"flags": ["twin51cmLargeGunMountNonexist", "rangefinderKaiAirRadar"],
+				"single": {
+					"houk": 1,
+					"houm": 1
+				}
+			}
+		}
 	},
 	"129": {
 		"count": 0,
@@ -2378,6 +2425,27 @@
 			}]
 		}]
 	},
+	"234": {
+		"count": 0,
+		"byClass": {
+			"37": {
+				"multiple": {
+					"houg": 1,
+					"tyku": 1,
+					"houk": 1,
+					"houm": 1
+				},
+				"synergy": {
+					"flags": ["rangefinderAirRadar"],
+					"single": {
+						"tyku": 1,
+						"houk": 1,
+						"houm": 1
+					}
+				}
+			}
+		}
+	},
 	"235": {
 		"count": 0,
 		"byClass": {
@@ -2781,6 +2849,34 @@
 			},
 			"108": "67",
 			"112": "67"
+		}
+	},
+	"281": {
+		"count": 0,
+		"byClass": {
+			"37": {
+				"synergy": {
+					"flags": ["rangefinderAirRadar"],
+					"single": {
+						"houg": 1,
+						"houm": 2
+					}
+				}
+			}
+		},
+		"byShip": {
+			"ids": [911, 916, 546],
+			"multiple": {
+				"houg": 1,
+				"houm": 1
+			},
+			"synergy": {
+				"flags": ["rangefinderKaiAirRadar"],
+				"single": {
+					"houk": 1,
+					"houm": 1
+				}
+			}
 		}
 	},
 	"282": {
@@ -8055,11 +8151,183 @@
 			}
 		}
 	},
+	"457": {
+		"count": 0,
+		"byClass": {
+			"44": {
+				"single": {
+					"raig": 1,
+					"houk": 4
+				}
+			},
+			"71": {
+				"single": {
+					"raig": 2,
+					"houk": 2
+				}
+			},
+			"103": "71",
+			"109": {
+				"single": {
+					"raig": 3,
+					"houk": 3
+				}
+			}
+		}
+	},
+	"458": {
+		"count": 0,
+		"byClass": {
+			"44": {
+				"single": {
+					"raig": 3,
+					"houk": 3
+				}
+			},
+			"71": {
+				"single": {
+					"raig": 3,
+					"houk": 4
+				}
+			},
+			"103": "71",
+			"109": {
+				"single": {
+					"raig": 3,
+					"houk": 6
+				}
+			}
+		}
+	},
+	"463": {
+		"count": 0,
+		"byClass": {
+			"37": {
+				"multiple": {
+					"houg": 1,
+					"tyku": 2,
+					"houk": 1,
+					"houm": 1
+				},
+				"synergy": {
+					"flags": ["rangefinderAirRadar"],
+					"single": {
+						"tyku": 1,
+						"houk": 1,
+						"houm": 1
+					}
+				}
+			}
+		},
+		"byShip": {
+			"ids": [911, 916, 546],
+			"multiple": {
+				"houg": 1,
+				"houk": 1,
+				"houm": 2
+			},
+			"synergy": {
+				"flags": ["rangefinderKaiAirRadar"],
+				"single": {
+					"tyku": 1,
+					"houk": 1,
+					"houm": 2
+				}
+			}
+		}
+	},
+	"464": {
+		"count": 0,
+		"byClass": {
+			"6": {
+				"multiple": {
+					"tyku": 2,
+					"houk": 2
+				}
+			},
+			"37": {
+				"multiple": {
+					"tyku": 3,
+					"houk": 2
+				},
+				"synergy": {
+					"flags": ["rangefinderAirRadar"],
+					"single": {
+						"tyku": 2,
+						"houk": 1,
+						"houm": 1
+					}
+				}
+			},
+			"73": "6",
+			"113": "6"
+		},
+		"byShip": {
+			"ids": [911, 916, 546],
+			"multiple": {
+				"tyku": 2,
+				"houk": 2
+			},
+			"synergy": {
+				"flags": ["rangefinderKaiAirRadar"],
+				"single": {
+					"houg": 2,
+					"tyku": 2,
+					"houk": 2,
+					"houm": 3
+				}
+			}
+		}
+	},
+	"465": {
+		"count": 0,
+		"byClass": {
+			"37": {
+				"synergy": {
+					"flags": ["rangefinderAirRadar"],
+					"single": {
+						"houg": 2,
+						"houm": 2
+					}
+				}
+			}
+		},
+		"byShip": [{
+			"ids": [911, 546],
+			"multiple": {
+				"houg": 1,
+				"houk": 2,
+				"houm": 1
+			},
+			"synergy": {
+				"flags": ["rangefinderKaiAirRadar"],
+				"single": {
+					"tyku": 1,
+					"houk": 1,
+					"houm": 2
+				}
+			}
+		}, {
+			"ids": [916],
+			"multiple": {
+				"houg": 2,
+				"houk": 8,
+				"houm": 2
+			},
+			"synergy": {
+				"flags": ["rangefinderKaiAirRadar"],
+				"single": {
+					"houk": 2,
+					"houm": 1
+				}
+			}
+		}]
+	},
 	"synergyGears": {
 		"surfaceRadar": 0,
-		"surfaceRadarIds": [28, 29, 31, 32, 88, 89, 124, 141, 142, 240, 278, 279, 307, 315, 410, 411, 450, 456],
+		"surfaceRadarIds": [28, 29, 31, 32, 88, 89, 124, 141, 142, 240, 278, 279, 307, 315, 410, 411, 450, 456, 460],
 		"airRadar": 0,
-		"airRadarIds": [27, 30, 32, 89, 106, 124, 142, 278, 279, 307, 315, 410, 411, 450, 456],
+		"airRadarIds": [27, 30, 32, 89, 106, 124, 142, 278, 279, 307, 315, 410, 411, 450, 456, 460],
 		"aaMachineGun": 0,
 		"aaMachineGunIds": [37, 38, 39, 40, 49, 51, 84, 85, 92, 131, 173, 191, 274, 301],
 		"domesticSonar": 0,
@@ -8090,6 +8358,9 @@
 		"twin203MediumGunMountNo2": 0,
 		"twin203MediumGunMountNo2Nonexist": 1,
 		"twin203MediumGunMountNo2Ids": [90],
+		"twin51cmLargeGunMount": 0,
+		"twin51cmLargeGunMountIds": [281],
+		"twin51cmLargeGunMountNonexist": 1,
 		"rotorcraft": 0,
 		"rotorcraftIds": [69, 324, 325, 326, 327],
 		"helicopter": 0,
@@ -8109,7 +8380,11 @@
 		"type21AirRadarK2Ids": [410],
 		"type13AirRadarKai": 0,
 		"type13AirRadarKaiNonexist": 1,
-		"type13AirRadarKaiIds": [106]
+		"type13AirRadarKaiIds": [106],
+		"rangefinderAirRadar": 0,
+		"rangefinderAirRadarIds": [142, 460],
+		"rangefinderKaiAirRadar": 0,
+		"rangefinderKaiAirRadarIds": [460]
 	},
 	"countryCtypeMap": {
 		"UnitedStates": [65, 69, 83, 84, 87, 91, 93, 95, 99, 102, 105, 106, 107, 110, 114],

@@ -1903,7 +1903,8 @@
 			"airmat": 0,
 			"armmat": 0,
 			"devmat": 0,
-			"torch": 0
+			"torch": 0,
+			"remodel_level": 1
 		},
 		"132": {
 			"ship_id_from": 132,
@@ -1968,6 +1969,22 @@
 			"devmat": 0,
 			"torch": 0,
 			"remodel_level": 1
+		},
+		"136": {
+			"ship_id_from": 136,
+			"ship_id_to": 911,
+			"level": 88,
+			"steel": 9800,
+			"ammo": 9900,
+			"catapult": 0,
+			"blueprint": 3,
+			"report": 1,
+			"gunmat": 0,
+			"airmat": 0,
+			"armmat": 0,
+			"devmat": 0,
+			"torch": 0,
+			"remodel_level": 2
 		},
 		"137": {
 			"ship_id_from": 137,
@@ -6686,6 +6703,21 @@
 			"devmat": 50,
 			"torch": 20
 		},
+		"881": {
+			"ship_id_from": 881,
+			"ship_id_to": 719,
+			"level": 55,
+			"steel": 150,
+			"ammo": 250,
+			"catapult": 0,
+			"blueprint": 0,
+			"report": 0,
+			"gunmat": 0,
+			"airmat": 0,
+			"armmat": 0,
+			"devmat": 0,
+			"torch": 0
+		},
 		"882": {
 			"ship_id_from": 882,
 			"ship_id_to": 887,
@@ -6746,6 +6778,21 @@
 			"airmat": 0,
 			"armmat": 0,
 			"devmat": 10,
+			"torch": 0
+		},
+		"886": {
+			"ship_id_from": 886,
+			"ship_id_to": 720,
+			"level": 37,
+			"steel": 110,
+			"ammo": 190,
+			"catapult": 0,
+			"blueprint": 0,
+			"report": 0,
+			"gunmat": 0,
+			"airmat": 0,
+			"armmat": 0,
+			"devmat": 0,
 			"torch": 0
 		},
 		"888": {
@@ -6824,6 +6871,38 @@
 			"armmat": 0,
 			"devmat": 5,
 			"torch": 10,
+			"remodel_level": 4
+		},
+		"911": {
+			"ship_id_from": 911,
+			"ship_id_to": 916,
+			"level": 93,
+			"steel": 3300,
+			"ammo": 3600,
+			"catapult": 0,
+			"blueprint": 0,
+			"report": 0,
+			"gunmat": 0,
+			"airmat": 0,
+			"armmat": 0,
+			"devmat": 0,
+			"torch": 0,
+			"remodel_level": 3
+		},
+		"916": {
+			"ship_id_from": 916,
+			"ship_id_to": 911,
+			"level": 93,
+			"steel": 3600,
+			"ammo": 3300,
+			"catapult": 0,
+			"blueprint": 0,
+			"report": 0,
+			"gunmat": 0,
+			"airmat": 0,
+			"armmat": 0,
+			"devmat": 0,
+			"torch": 0,
 			"remodel_level": 4
 		}
 	},
@@ -7370,8 +7449,8 @@
 		},
 		"131": {
 			"origin": 131,
-			"group": [131, 136],
-			"final_forms": [136]
+			"group": [131, 136, 911, 916],
+			"final_forms": [916, 911]
 		},
 		"132": {
 			"origin": 132,
@@ -8163,6 +8242,11 @@
 			"group": [877, 878, 879],
 			"final_forms": [879]
 		},
+		"881": {
+			"origin": 881,
+			"group": [881, 719],
+			"final_forms": [719]
+		},
 		"882": {
 			"origin": 882,
 			"group": [882, 887],
@@ -8172,6 +8256,11 @@
 			"origin": 885,
 			"group": [885, 713],
 			"final_forms": [713]
+		},
+		"886": {
+			"origin": 886,
+			"group": [886, 720],
+			"final_forms": [720]
 		},
 		"895": {
 			"origin": 895,
@@ -8864,13 +8953,17 @@
 		"716": 643,
 		"717": 900,
 		"718": 674,
+		"719": 881,
+		"720": 886,
 		"877": 877,
 		"878": 877,
 		"879": 877,
+		"881": 881,
 		"882": 882,
 		"883": 184,
 		"884": 522,
 		"885": 885,
+		"886": 886,
 		"887": 882,
 		"888": 184,
 		"889": 522,
@@ -8879,8 +8972,10 @@
 		"900": 900,
 		"903": 479,
 		"908": 479,
+		"911": 131,
+		"916": 131,
 		"1496": 601
 	},
-	"shipCount": 1278,
-	"upgradeCount": 251
+	"shipCount": 1294,
+	"upgradeCount": 256
 }
