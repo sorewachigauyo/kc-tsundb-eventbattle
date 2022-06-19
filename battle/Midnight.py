@@ -100,7 +100,7 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
     cap = YASEN_CAP if not defender_submarine else DEFAULT_CAP
 
     if num > cap:
-        num = cap + np.sqrt(num)
+        num = cap + np.sqrt(num - cap)
 
     # Apply enemy specific modifiers
     num = apply_postcap_target_special_modifier(int(num), attacker, defender)

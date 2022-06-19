@@ -1313,7 +1313,12 @@
         "263": {
             "icon": 38,
             "jp": "紫電改(三四三空) 戦闘301",
-            "en": "Shiden Kai (343rd Air Group) 301st Fighter Squadron"
+            "en": "Shiden Kai (343 Air Group) 301st Fighter Squadron"
+        },
+        "264": {
+            "icon": 38,
+            "jp": "紫電改(三四三空) 戦闘701",
+            "en": "Shiden Kai (343 Air Group) 701st Fighter Squadron"
         },
         "266": {
             "icon": 1,
@@ -2294,6 +2299,16 @@
             "icon": 3,
             "jp": "試製51cm三連装砲",
             "en": "Prototype 51cm Triple Gun Mount"
+        },
+        "466": {
+            "icon": 8,
+            "jp": "流星改(熟練)",
+            "en": "Ryuusei Kai (Skilled)"
+        },
+        "467": {
+            "icon": 16,
+            "jp": "5inch連装砲(副砲配置) 集中配備",
+            "en": "5inch Twin Gun Mount (Secondary Armament) Concentrated Deployment"
         },
         "501": {
             "icon": 1,
@@ -5730,17 +5745,33 @@
             "jp": "天霧改二",
             "en": "Amagiri Kai Ni"
         },
+        "905": {
+            "jp": "倉橋",
+            "en": "Kurahashi"
+        },
         "908": {
             "jp": "天霧改二丁",
             "en": "Amagiri Kai Ni D"
+        },
+        "910": {
+            "jp": "倉橋改",
+            "en": "Kurahashi Kai"
         },
         "911": {
             "jp": "大和改二",
             "en": "Yamato Kai Ni"
         },
+        "913": {
+            "jp": "Maryland",
+            "en": "Maryland"
+        },
         "916": {
             "jp": "大和改二重",
             "en": "Yamato Kai Ni Juu"
+        },
+        "918": {
+            "jp": "Maryland改",
+            "en": "Maryland Kai"
         },
         "1496": {
             "jp": "Colorado改",
@@ -8117,6 +8148,62 @@
         "2100": {
             "jp": "外南洋駆逐棲姫-壊",
             "en": "Outer Southern Sea Destroyer Princess (Damaged)"
+        },
+        "2101": {
+            "jp": "軽母ヌ級II",
+            "en": "Nu-Class Light Carrier B"
+        },
+        "2102": {
+            "jp": "軽母ヌ級II",
+            "en": "Nu-Class Light Carrier B"
+        },
+        "2103": {
+            "jp": "軽母ヌ級II",
+            "en": "Nu-Class Light Carrier B"
+        },
+        "2104": {
+            "jp": "軽母ヌ級II",
+            "en": "Nu-Class Light Carrier B"
+        },
+        "2105": {
+            "jp": "空母棲姫II",
+            "en": "Aircraft Carrier Princess B"
+        },
+        "2106": {
+            "jp": "空母棲姫II",
+            "en": "Aircraft Carrier Princess B"
+        },
+        "2107": {
+            "jp": "空母棲姫II",
+            "en": "Aircraft Carrier Princess B"
+        },
+        "2108": {
+            "jp": "空母棲姫II",
+            "en": "Aircraft Carrier Princess B"
+        },
+        "2109": {
+            "jp": "近代化戦艦棲姫",
+            "en": "Modernized Battleship Princess"
+        },
+        "2110": {
+            "jp": "近代化戦艦棲姫",
+            "en": "Modernized Battleship Princess"
+        },
+        "2111": {
+            "jp": "近代化戦艦棲姫",
+            "en": "Modernized Battleship Princess"
+        },
+        "2112": {
+            "jp": "近代化戦艦棲姫-壊",
+            "en": "Modernized Battleship Princess (Damaged)"
+        },
+        "2113": {
+            "jp": "近代化戦艦棲姫-壊",
+            "en": "Modernized Battleship Princess (Damaged)"
+        },
+        "2114": {
+            "jp": "近代化戦艦棲姫-壊",
+            "en": "Modernized Battleship Princess (Damaged)"
         }
     }
 }

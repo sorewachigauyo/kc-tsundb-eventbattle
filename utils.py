@@ -69,7 +69,7 @@ def get_gear_improvement_stats(ship):
 
         # FP
         # Large Gun
-        if type2 == 3:
+        if type2 == 3 or type2 == 38:
             result["fp"] += 1.5 * np.sqrt(improvement)
         # Secondary Gun
         elif type2 == 4:

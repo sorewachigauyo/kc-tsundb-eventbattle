@@ -8117,14 +8117,16 @@
 				"multiple": {
 					"houg": 3,
 					"houk": 4,
-					"saku": 4
+					"saku": 4,
+					"houm": 3
 				}
 			},
 			"UnitedKingdom": {
 				"multiple": {
 					"houg": 2,
 					"houk": 2,
-					"saku": 2
+					"saku": 2,
+					"houm": 2
 				}
 			},
 			"Australia": "UnitedKingdom"
@@ -8147,6 +8149,7 @@
 				"houg": 2,
 				"houk": 2,
 				"saku": 3,
+				"houm": 2,
 				"leng": 1
 			}
 		}
@@ -8323,6 +8326,63 @@
 			}
 		}]
 	},
+	"466": {
+		"count": 0,
+		"byShip": [{
+			"ids": [277, 278, 156, 288, 112, 280, 279],
+			"multiple": {
+				"houg": 1,
+				"houm": 1
+			}
+		}, {
+			"ids": [461, 466, 462, 467],
+			"multiple": {
+				"houg": 1,
+				"houk": 2,
+				"houm": 1
+			}
+		}, {
+			"ids": [594, 698, 646, 599, 610, 196, 197],
+			"multiple": {
+				"houg": 1,
+				"houk": 1,
+				"houm": 2
+			}
+		}]
+	},
+	"467": {
+		"count": 0,
+		"byNation": {
+			"UnitedStates": {
+				"synergy": [{
+					"flags": ["usNavySurfaceRadar"],
+					"single": {
+						"houg": 1,
+						"tyku": 1,
+						"houk": 1,
+						"houm": 2
+					}
+				}, {
+					"flags": ["usNavyAirRadar"],
+					"single": {
+						"tyku": 2,
+						"houk": 2
+					}
+				}]
+			}
+		},
+		"byClass": {
+			"65": {
+				"multiple": {
+					"tyku": 2,
+					"houk": 1
+				}
+			},
+			"93": "65",
+			"102": "65",
+			"107": "65"
+		}
+	},
 	"synergyGears": {
 		"surfaceRadar": 0,
 		"surfaceRadarIds": [28, 29, 31, 32, 88, 89, 124, 141, 142, 240, 278, 279, 307, 315, 410, 411, 450, 456, 460],
@@ -8384,7 +8444,11 @@
 		"rangefinderAirRadar": 0,
 		"rangefinderAirRadarIds": [142, 460],
 		"rangefinderKaiAirRadar": 0,
-		"rangefinderKaiAirRadarIds": [460]
+		"rangefinderKaiAirRadarIds": [460],
+		"usNavySurfaceRadar": 0,
+		"usNavySurfaceRadarIds": [279, 307, 315, 456],
+		"usNavyAirRadar": 0,
+		"usNavyAirRadarIds": [278, 279]
 	},
 	"countryCtypeMap": {
 		"UnitedStates": [65, 69, 83, 84, 87, 91, 93, 95, 99, 102, 105, 106, 107, 110, 114],

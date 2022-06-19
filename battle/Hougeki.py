@@ -92,7 +92,7 @@ def process_hougeki(attack: HougekiAttack, battle: Battle):
     cap = HOUGEKI_CAP if not defender_submarine else DEFAULT_CAP
 
     if num > cap:
-        num = cap + np.sqrt(num)
+        num = cap + np.sqrt(num - cap)
 
     # Apply enemy specific modifiers
     num = apply_postcap_target_special_modifier(int(num), attacker, defender)
@@ -137,7 +137,7 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
     cutin_modifier = HOUGEKI_CUTIN_MODIFIER[spattack]
 
     # No need to process further for regular cutins
-    if spattack < 7 or spattack > 199:
+    if spattack < 7 or spattack in [HOUGEKI_CUTIN.ZUIUN_MULTI_ANGLE, HOUGEKI_CUTIN.AIR_SEA_MULTI_ANGLE]:
         return cutin_modifier
 
     # Adjust for CVCI
@@ -216,67 +216,67 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
-        elif attack.cutin == HOUGEKI_CUTIN.YAMATO_3SHIP_CUTIN:
+    elif attack.cutin == HOUGEKI_CUTIN.YAMATO_3SHIP_CUTIN:
 
-            thirdshot = attacker.id == attacker.fleet.ships[2].id
-            partner_ship_id = attacker.fleet.ships[1].id
+        thirdshot = attacker.id == attacker.fleet.ships[2].id
+        partner_ship_id = attacker.fleet.ships[1].id
 
-            if thirdshot:
-                cutin_modifier = 1.65
+        if thirdshot:
+            cutin_modifier = 1.65
 
-            # Class modifiers and rangefinder do not apply to the third attacker
-            if not thirdshot:
-                # Yamato-class K2
-                if partner_ship_id in [911, 916, 546]:
-                    if attacker.id == attacker.fleet.ships[0].id:
-                        cutin_modifier *= 1.1
-                    else:
-                        cutin_modifier *= 1.2
-
-                # Nagato-class K2
-                elif partner_ship_id in [541, 573]:
+        # Class modifiers and rangefinder do not apply to the third attacker
+        if not thirdshot:
+            # Yamato-class K2
+            if partner_ship_id in [911, 916, 546]:
+                if attacker.id == attacker.fleet.ships[0].id:
                     cutin_modifier *= 1.1
+                else:
+                    cutin_modifier *= 1.2
 
-                # Ise-class K2
-                elif partner_ship_id in [553, 554]:
-                    cutin_modifier *= 1.05
+            # Nagato-class K2
+            elif partner_ship_id in [541, 573]:
+                cutin_modifier *= 1.1
 
-                # Rangefinder bonus
-                if attacker.has_equip([142, 460]):
-                    cutin_modifier *= 1.1
-
-            # AP Shell bonus
-            if attacker.has_equip_type(19, 2):
-                cutin_modifier *= 1.35
-
-            # Radar bonus
-            if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
-                    and fetch_equip_master(eq_id)["api_saku"] > 4), False):
-                cutin_modifier *= 1.15
-
-        elif attack.cutin == HOUGEKI_CUTIN.YAMATO_2SHIP_CUTIN:
-            partner_ship_id = attacker.fleet.ships[1].id
-            thirdshot = attacker.id == partner_ship_id
-
-            if thirdshot:
-                cutin_modifier = 1.55
-
-             # Yamato-class K2 bonus
-            if partner_ship_id in [546, 911, 916]:
-                cutin_modifier *= 1.2 if thirdshot else 1.1
-
-            # AP Shell bonus
-            if attacker.has_equip_type(19, 2):
-                cutin_modifier *= 1.35
-
-            # Radar bonus
-            if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
-                    and fetch_equip_master(eq_id)["api_saku"] > 4), False):
-                cutin_modifier *= 1.15
+            # Ise-class K2
+            elif partner_ship_id in [553, 554]:
+                cutin_modifier *= 1.05
 
             # Rangefinder bonus
             if attacker.has_equip([142, 460]):
                 cutin_modifier *= 1.1
+
+        # AP Shell bonus
+        if attacker.has_equip_type(19, 2):
+            cutin_modifier *= 1.35
+
+        # Radar bonus
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+                and fetch_equip_master(eq_id)["api_saku"] > 4), False):
+            cutin_modifier *= 1.15
+
+    elif attack.cutin == HOUGEKI_CUTIN.YAMATO_2SHIP_CUTIN:
+        partner_ship_id = attacker.fleet.ships[1].id
+        thirdshot = attacker.id == partner_ship_id
+
+        if thirdshot:
+            cutin_modifier = 1.55
+
+            # Yamato-class K2 bonus
+        if partner_ship_id in [546, 911, 916]:
+            cutin_modifier *= 1.2 if thirdshot else 1.1
+
+        # AP Shell bonus
+        if attacker.has_equip_type(19, 2):
+            cutin_modifier *= 1.35
+
+        # Radar bonus
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+                and fetch_equip_master(eq_id)["api_saku"] > 4), False):
+            cutin_modifier *= 1.15
+
+        # Rangefinder bonus
+        if attacker.has_equip([142, 460]):
+            cutin_modifier *= 1.1
 
 
     return cutin_modifier
@@ -372,7 +372,7 @@ def determine_combined_fleet_factor(attacker: PlayerShip, target: EnemyShip):
         elif attacker.fleet.fleet_type == FLEETTYPE.STF:
             return 10 if is_main else -5
         # TCF vs single
-        elif attacker.fleet.fleet_type == FLEETTYPE.CTF:
+        elif attacker.fleet.fleet_type == FLEETTYPE.TCF:
             return -5 if is_main else 10
         # Single vs Single
         else:
@@ -404,8 +404,8 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
     # armed dlc/ab mult, add
     # basic bonus add
 
-    stype_bonus = basic_bonus = shikon_bonus = m4a1_bonus = m4a1_bonus = honi_bonus = armed_dlc_ab_bonus = (
-        1, 0)
+    stype_bonus = basic_bonus = shikon_bonus = m4a1_bonus = m4a1_bonus = honi_bonus = armed_dlc_ab_bonus = [
+        1, 0]
 
     # Assign general modifiers first
 
@@ -432,7 +432,7 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
     # Daihatsu improvement modifier
     dlc_count = attacker.count_equip_by_type(24, 2)
     if dlc_count:
-        dlc_lv = reduce((lambda x, y: x + max(attacker.stars[y[0]], 0) if fetch_equip_master(y[1])["api_type"][2] == 24 else 0),
+        dlc_lv = reduce((lambda x, y: x + max(attacker.stars[y[0]], 0) if y[1] > 0 and fetch_equip_master(y[1])["api_type"][2] == 24 else 0),
                         enumerate(attacker.equip), 0) / dlc_count
         basic_bonus[0] = (dlc_lv / 50 + 1)
 
@@ -529,7 +529,7 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
                 basic_bonus[0] *= ARTILLERY_IMP_TOKU_MODIFIER
 
             # T89/HoNi
-            t89_count = min(attacker.count_equip(166, 449), 2)
+            t89_count = min(attacker.count_equip([166, 449]), 2)
             basic_bonus[0] *= ARTILLERY_IMP_T89_HONI_MODIFIER[t89_count]
 
             # M4A1
@@ -577,7 +577,7 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
                 basic_bonus[0] *= ISOLATED_ISLAND_PRINCESS_TOKU_MODIFIER
 
             # T89/HoNi
-            t89_count = min(attacker.count_equip(166, 449), 2)
+            t89_count = min(attacker.count_equip([166, 449]), 2)
             basic_bonus[0] *= ISOLATED_ISLAND_PRINCESS_T89_HONI_MODIFIER[t89_count]
 
             # M4A1
@@ -634,7 +634,7 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
                 basic_bonus[0] *= HARBOUR_SUMMER_PRINCESS_TOKU_MODIFIER
 
             # T89/HoNi
-            t89_count = min(attacker.count_equip(166, 449), 2)
+            t89_count = min(attacker.count_equip([166, 449]), 2)
             basic_bonus[0] *= HARBOUR_SUMMER_PRINCESS_T89_HONI_MODIFIER[t89_count]
 
             # M4A1
@@ -675,7 +675,7 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
                 basic_bonus[0] *= SOFT_SKINNED_TOKU_MODIFIER
 
             # T89/HoNi
-            t89_count = min(attacker.count_equip(166, 449), 2)
+            t89_count = min(attacker.count_equip([166, 449]), 2)
             basic_bonus[0] *= SOFT_SKINNED_T89_HONI_MODIFIER[t89_count]
 
             # M4A1
@@ -811,7 +811,7 @@ def apply_postcap_target_special_modifier(num: float, attacker: PlayerShip, defe
             num *= SDH_DAIHATSU_MODIFIER
 
             # Calculate average improvement of daihatsu
-            dlc_lv = reduce((lambda x, y: x + max(attacker.stars[y[0]], 0) if fetch_equip_master(
+            dlc_lv = reduce((lambda x, y: x + max(attacker.stars[y[0]], 0) if y[1] > 0 and fetch_equip_master(
                 y[1])["api_type"][2] == 24 else 0), enumerate(attacker.equip), 0) / dlc_count
             # Apply improvement modifier for daihatsus,  repeat if T89/Honi and Panzer II is present
             num *= np.power(1 + dlc_lv / 50, 1 + (

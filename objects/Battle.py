@@ -54,6 +54,7 @@ class Battle:
             self.friendly_fleet = FriendFleet(
                 playerformation=playerformation, **rawapi["api_friendly_info"])
 
+        self.resupplied = False
         if resupplyused:
             self.resupply_fleet(self.fcombined != FLEETTYPE.SINGLE)
 
@@ -70,6 +71,11 @@ class Battle:
     def resupply_fleet(self, combined: bool):
         resupply_mod, resupply_constant = (0.125, 0.025) if combined else (0.11, 0.14)
         underway_replenishment_count = min(reduce(lambda x, y: x + y.count_equip(146),
-                     self.fship_mapping.values(), 0), 3)
+                     list(self.fship_mapping.values()), 0), 3)
 
-        map(lambda x: x.resupply(resupply_mod * underway_replenishment_count + resupply_constant), self.fship_mapping.values())
+        if underway_replenishment_count == 0:
+            return
+
+        for ship in self.fship_mapping.values():
+            ship.resupply(resupply_mod * underway_replenishment_count + resupply_constant)
+        self.resupplied = True
