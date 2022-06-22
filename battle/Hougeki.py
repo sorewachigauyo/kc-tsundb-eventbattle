@@ -200,12 +200,12 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
             cutin_modifier *= 1.15
 
     elif attack.cutin == HOUGEKI_CUTIN.COLORADO_SPECIAL:
-        if attacker.id != 601 and attacker.id != 1496:
-            cutin_modifier = 1.2
+        if attacker.id != attacker.fleet.ships[0].id:
+            cutin_modifier = 1.3            
 
             # Big 7 partner bonus
-            if attacker.id in [80, 275, 541, 81, 276, 573, 571, 576]:
-                cutin_modifier *= 1.1 if attacker.fleet.ships[1].id == attacker.id else 1.15
+            if attacker.id in [275, 541, 276, 573, 571, 576, 601, 1496, 913, 918]:
+                cutin_modifier *= 1.15 if attacker.fleet.ships[1].id == attacker.id else 1.17
 
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
@@ -216,30 +216,40 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
             cutin_modifier *= 1.15
 
+        # SG Radar LM bonus
+        if attacker.has_equip(456):
+            cutin_modifier *= 1.15
+
+
     elif attack.cutin == HOUGEKI_CUTIN.YAMATO_3SHIP_CUTIN:
-
-        thirdshot = attacker.id == attacker.fleet.ships[2].id
-        partner_ship_id = attacker.fleet.ships[1].id
-
+        second_ship_id = attacker.fleet.ships[1].id
+        third_ship_id = attacker.fleet.ships[2].id
+        thirdshot = attacker.id == third_ship_id
+        secondshot = attacker.id == second_ship_id
+    
+        # Third attacker base bonus
         if thirdshot:
             cutin_modifier = 1.65
 
         # Class modifiers and rangefinder do not apply to the third attacker
         if not thirdshot:
-            # Yamato-class K2
-            if partner_ship_id in [911, 916, 546]:
-                if attacker.id == attacker.fleet.ships[0].id:
-                    cutin_modifier *= 1.1
-                else:
+           
+            if secondshot:
+                # Second Shot Yamato-class bonus
+                if second_ship_id in [911, 916, 546] or third_ship_id in [911, 916, 546]:
                     cutin_modifier *= 1.2
 
-            # Nagato-class K2
-            elif partner_ship_id in [541, 573]:
-                cutin_modifier *= 1.1
+                # Second Shot Nagato-class Bonus
+                elif second_ship_id in [541, 573] or third_ship_id in [541, 573]:
+                    cutin_modifier *= 1.1
+                    
+                # Second Shot Ise-class Bonus
+                elif second_ship_id in [553, 554] or third_ship_id in [553, 554]:
+                    cutin_modifier *= 1.05
 
-            # Ise-class K2
-            elif partner_ship_id in [553, 554]:
-                cutin_modifier *= 1.05
+            # Flagship bonus for Yamato, Nagato and Ise-classes
+            elif second_ship_id in [911, 916, 546, 541, 573, 553, 554] or third_ship_id in [911, 916, 546, 541, 573, 553, 554]:
+                cutin_modifier *= 1.1
 
             # Rangefinder bonus
             if attacker.has_equip([142, 460]):

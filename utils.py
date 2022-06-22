@@ -6,7 +6,7 @@ import numpy as np
 #lang = "en"
 FIGHTER_BOMBER_ID = [60, 154, 219, 447]
 SEC_GUN_FILTER = [11, 134, 135]
-T2_FP_LIST = [1, 2, 18, 19, 21, 24, 29, 42, 36, 37, 39, 46]
+T2_FP_LIST = [1, 2, 18, 19, 21, 24, 29, 42, 36, 37, 39, 46, 34, 32]
 BOMBER_TYPE2_ID = [7, 8, 11, 41, 47, 53, 57, 58]
 
 # Data loading
@@ -111,7 +111,7 @@ def get_gear_improvement_stats(ship):
             result["asw"] += mod * improvement
 
         # Yasen
-        if type2 in [1, 2, 3, 5, 19, 22, 24, 29, 32, 36, 37, 38, 42, 46]:
+        if type2 in [1, 2, 3, 4, 5, 18, 19, 22, 24, 29, 32, 34, 36, 37, 38, 39, 42, 46]:
             result["yasen"] += np.sqrt(improvement)
         elif type2 in [7, 8, 57, 58]:
             result["yasen"] += np.sqrt(improvement)

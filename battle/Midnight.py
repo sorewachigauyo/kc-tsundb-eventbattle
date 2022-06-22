@@ -54,7 +54,7 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
         num = calculate_base_asw_power(attacker)
     elif attacker.id == 515 or attacker.id == 393:
         ark_royal_legacy = True
-        num = calculate_ark_royal_night_power(attacker, defender)
+        num = calculate_ark_royal_night_power(attacker, defender, night_contact)
     else:
         num = calculate_base_attack_power(attacker, defender, night_contact)
 
@@ -153,7 +153,7 @@ def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, n
 
     for equip_id in attacker.equip:
         if equip_id in SWORDFISH_IDS:
-            master = fetch_equip_master("equip_id")
+            master = fetch_equip_master(equip_id)
             num += master["api_houg"]
 
             if not defender_installation:
@@ -316,20 +316,24 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.15
 
     elif attack.cutin == YASEN_CUTIN.COLORADO_SPECIAL:
-        if attacker.id != 601 and attacker.id != 1496:
-            cutin_modifier = 1.2
+        if attacker.id != 601 and attacker.id != 1496 and attack.id != 913 and attack.id != 918:
+            cutin_modifier = 1.3            
 
             # Big 7 partner bonus
-            if attacker.id in [80, 275, 541, 81, 276, 573, 571, 576]:
-                cutin_modifier *= 1.1 if attacker.fleet.ships[1].id == attacker.id else 1.15
+            if attacker.id in [275, 541, 276, 573, 571, 576, 601, 1496, 913, 918]:
+                cutin_modifier *= 1.15 if attacker.fleet.ships[1].id == attacker.id else 1.17
 
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
             cutin_modifier *= 1.35
 
         # Radar bonus
-        if next((eq_id for eq_id in attacker.equip if eq_id > -1 if fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
                 and fetch_equip_master(eq_id)["api_saku"] > 4), False):
+            cutin_modifier *= 1.15
+
+        # SG Radar LM bonus
+        if attacker.has_equip(456):
             cutin_modifier *= 1.15
 
     elif attack.cutin == YASEN_CUTIN.KONGOU_K2_CUTIN:
@@ -337,5 +341,67 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.25
         elif battle.engagement == ENGAGEMENT.RED_T:
             cutin_modifier *= 0.75
+
+    elif attack.cutin == YASEN_CUTIN.YAMATO_3SHIP_CUTIN:
+
+        thirdshot = attacker.id == attacker.fleet.ships[2].id
+        partner_ship_id = attacker.fleet.ships[1].id
+
+        if thirdshot:
+            cutin_modifier = 1.65
+
+        # Class modifiers and rangefinder do not apply to the third attacker
+        if not thirdshot:
+            # Yamato-class K2
+            if partner_ship_id in [911, 916, 546]:
+                if attacker.id == attacker.fleet.ships[0].id:
+                    cutin_modifier *= 1.1
+                else:
+                    cutin_modifier *= 1.2
+
+            # Nagato-class K2
+            elif partner_ship_id in [541, 573]:
+                cutin_modifier *= 1.1
+
+            # Ise-class K2
+            elif partner_ship_id in [553, 554]:
+                cutin_modifier *= 1.05
+
+            # Rangefinder bonus
+            if attacker.has_equip([142, 460]):
+                cutin_modifier *= 1.1
+
+        # AP Shell bonus
+        if attacker.has_equip_type(19, 2):
+            cutin_modifier *= 1.35
+
+        # Radar bonus
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+                and fetch_equip_master(eq_id)["api_saku"] > 4), False):
+            cutin_modifier *= 1.15
+
+    elif attack.cutin == YASEN_CUTIN.YAMATO_2SHIP_CUTIN:
+        partner_ship_id = attacker.fleet.ships[1].id
+        thirdshot = attacker.id == partner_ship_id
+
+        if thirdshot:
+            cutin_modifier = 1.55
+
+            # Yamato-class K2 bonus
+        if partner_ship_id in [546, 911, 916]:
+            cutin_modifier *= 1.2 if thirdshot else 1.1
+
+        # AP Shell bonus
+        if attacker.has_equip_type(19, 2):
+            cutin_modifier *= 1.35
+
+        # Radar bonus
+        if next((eq_id for eq_id in attacker.equip if eq_id > -1 and fetch_equip_master(eq_id)["api_type"][2] in [12, 13, 93]
+                and fetch_equip_master(eq_id)["api_saku"] > 4), False):
+            cutin_modifier *= 1.15
+
+        # Rangefinder bonus
+        if attacker.has_equip([142, 460]):
+            cutin_modifier *= 1.1
 
     return cutin_modifier
