@@ -48,7 +48,7 @@ class Ship:
         num2 = 0
         for equip_id in self.equip:
 
-            if equip_id == -1:
+            if equip_id == -1 or equip_id == 0:
                 continue
 
             if included_ids:

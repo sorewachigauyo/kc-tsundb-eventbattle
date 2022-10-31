@@ -45,7 +45,7 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
     defender = battle.eship_mapping[attack.defender]
 
     defender_submarine = defender.is_submarine()
-    night_contact = battle.contact > 0 and attack.phase != PHASE.FRIENDLY_SHELLING
+    night_contact = battle.contact if attack.phase != PHASE.FRIENDLY_SHELLING else -1
     ark_royal_legacy = False
 
     if attack.night_carrier:
@@ -120,18 +120,16 @@ def process_midnight(attack: MidnightAttack, battle: Battle):
     return attacker, defender, int(num)
 
 
-def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defender: EnemyShip, night_contact: bool):
+def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defender: EnemyShip, night_contact: int):
 
     defender_installation = defender.speed == SPEED.NONE
     if isinstance(attacker, PlayerShip):
         num = attacker.visible_stats["fp"] + \
             get_gear_improvement_stats(attacker)["yasen"]
     elif isinstance(attacker, FriendShip):
-        num = attacker.fp + attacker.fetch_equipment_total_stats(
-            attacker)["yasen"]
+        num = attacker.fp + attacker.fetch_equipment_total_stats("houg", True)
 
-    if night_contact:
-        num += 5
+    num += calculate_night_recon_modifier(night_contact)
 
     if defender_installation:
         num = calculate_anti_installation_precap(
@@ -140,12 +138,12 @@ def calculate_base_attack_power(attacker: Union[PlayerShip, FriendShip], defende
         if isinstance(attacker, PlayerShip):
             num += attacker.visible_stats["tp"]
         elif isinstance(attacker, FriendShip):
-            num += attacker.tp + attacker.fetch_equipment_total_stats("raig")
+            num += attacker.tp + attacker.fetch_equipment_total_stats("raig", True)
 
     return num
 
 
-def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, night_contact):
+def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, night_contact: int):
     defender_installation = defender.speed == SPEED.NONE
 
     # Base firepower
@@ -159,8 +157,7 @@ def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, n
             if not defender_installation:
                 num += master["api_raig"]
 
-    if night_contact:
-        num += 5
+    num += calculate_night_recon_modifier(night_contact)
 
     if defender_installation:
         num = calculate_anti_installation_precap(
@@ -169,7 +166,7 @@ def calculate_ark_royal_night_power(attacker: PlayerShip, defender: EnemyShip, n
     return num
 
 
-def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, night_contact: bool):
+def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, night_contact: int):
     # For carrier night attack, only specific equipment and stats count towards calculation
     # This is likely to be an overestimation due to uncounted for plane slot size reduction
 
@@ -208,8 +205,7 @@ def calculate_night_carrier_power(attacker: PlayerShip, defender: EnemyShip, nig
                     master["api_baku"] + master["api_houg"] + master["api_raig"] + master["api_tais"])
                 num += np.sqrt(stars)
 
-    if night_contact:
-        num += 5
+    num += calculate_night_recon_modifier(night_contact)
 
     # Torpedo visible bonus counts, but not shelling
     if not defender_installation:
@@ -405,3 +401,13 @@ def calculate_special_attack_modifier(attack: MidnightAttack, attacker: PlayerSh
             cutin_modifier *= 1.1
 
     return cutin_modifier
+
+def calculate_night_recon_modifier(plane_id):
+    if plane_id < 1:
+        return 0
+
+    master = fetch_equip_master(plane_id)
+    acc = master["api_houm"]
+
+    return YASEN_NIGHT_CONTACT_MODIFIER[acc]
+

@@ -24,6 +24,7 @@ def calculate_bonus_gear_stats(ship):
         "houm": 0,
         "leng": 0,
         "soku": 0,
+        "baku": 0
     }
 
     # First fill up synergy gear pieces
@@ -157,9 +158,13 @@ def add_bonus(bonus, result, ship, synergy):
             bdef = bonus_definition[nation_name]
 
             if isinstance(bdef, str):
-                add_stats(bonus_definition[bdef], ship, result, synergy, bonus)
+                if isinstance(bonus_definition[bdef], list):
+                    bdef = bonus_definition[bdef]
+                else:
+                    add_stats(bonus_definition[bdef], ship, result, synergy, bonus)
+                    return
 
-            elif isinstance(bdef, int):
+            if isinstance(bdef, int):
                 add_stats(bonus["byClass"][str(bdef)], ship, result, synergy, bonus)
 
             elif isinstance(bdef, list):

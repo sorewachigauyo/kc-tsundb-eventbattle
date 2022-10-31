@@ -506,7 +506,7 @@
             "en": "Star Shell"
         },
         "102": {
-            "icon": 10,
+            "icon": 50,
             "jp": "九八式水上偵察機(夜偵)",
             "en": "Type 98 Reconnaissance Seaplane (Night Recon)"
         },
@@ -2285,6 +2285,11 @@
             "jp": "15m二重測距儀改+21号電探改二+熟練射撃指揮所",
             "en": "15m Duplex Rangefinder Kai + Type 21 Air Radar Kai Ni + Skilled Fire Direction Center"
         },
+        "461": {
+            "icon": 5,
+            "jp": "熟練聴音員+後期型艦首魚雷(4門)",
+            "en": "熟練聴音員+後期型艦首魚雷(4門)"
+        },
         "463": {
             "icon": 4,
             "jp": "15.5cm三連装副砲改二",
@@ -2309,6 +2314,81 @@
             "icon": 16,
             "jp": "5inch連装砲(副砲配置) 集中配備",
             "en": "5inch Twin Gun Mount (Secondary Armament) Concentrated Deployment"
+        },
+        "468": {
+            "icon": 3,
+            "jp": "38cm四連装砲改 deux",
+            "en": "38cm Quadruple Gun Mount Kai Deux"
+        },
+        "469": {
+            "icon": 50,
+            "jp": "零式水上偵察機11型乙改(夜偵)",
+            "en": "Type 0 Reconnaissance Seaplane Model 11B Kai (Night Recon)"
+        },
+        "470": {
+            "icon": 1,
+            "jp": "12.7cm連装砲C型改三",
+            "en": "12.7cm Twin Gun Mount Model C Kai 3"
+        },
+        "471": {
+            "icon": 50,
+            "jp": "Loire 130M",
+            "en": "Loire 130M"
+        },
+        "472": {
+            "icon": 17,
+            "jp": "Mk.32 対潜魚雷(Mk.2落射機)",
+            "en": "Mk.32 対潜魚雷(Mk.2落射機)"
+        },
+        "473": {
+            "icon": 45,
+            "jp": "F4U-2 Night Corsair",
+            "en": "F4U-2 Night Corsair"
+        },
+        "474": {
+            "icon": 7,
+            "jp": "F4U-4",
+            "en": "F4U-4"
+        },
+        "475": {
+            "icon": 7,
+            "jp": "AU-1",
+            "en": "AU-1"
+        },
+        "476": {
+            "icon": 7,
+            "jp": "F4U-7",
+            "en": "F4U-7"
+        },
+        "477": {
+            "icon": 29,
+            "jp": "熟練甲板要員",
+            "en": "熟練甲板要員"
+        },
+        "478": {
+            "icon": 29,
+            "jp": "熟練甲板要員+航空整備員",
+            "en": "熟練甲板要員+航空整備員"
+        },
+        "479": {
+            "icon": 37,
+            "jp": "Mosquito FB Mk.VI",
+            "en": "Mosquito FB Mk.VI"
+        },
+        "480": {
+            "icon": 9,
+            "jp": "Mosquito PR Mk.IV",
+            "en": "Mosquito PR Mk.IV"
+        },
+        "481": {
+            "icon": 8,
+            "jp": "Mosquito TR Mk.33",
+            "en": "Mosquito TR Mk.33"
+        },
+        "482": {
+            "icon": 20,
+            "jp": "特大発動艇+Ⅲ号戦車(北アフリカ仕様)",
+            "en": "特大発動艇+Ⅲ号戦車(北アフリカ仕様)"
         },
         "501": {
             "icon": 1,
@@ -5181,6 +5261,10 @@
             "jp": "日進",
             "en": "Nisshin"
         },
+        "582": {
+            "jp": "夏雲",
+            "en": "Natsugumo"
+        },
         "583": {
             "jp": "峯雲",
             "en": "Minegumo"
@@ -5681,6 +5765,22 @@
             "jp": "早潮改",
             "en": "Hayashio Kai"
         },
+        "721": {
+            "jp": "夏雲改",
+            "en": "Summer 雲 Kai"
+        },
+        "722": {
+            "jp": "Brooklyn改",
+            "en": "Brooklyn Kai"
+        },
+        "723": {
+            "jp": "Ranger改",
+            "en": "Ranger Kai"
+        },
+        "724": {
+            "jp": "Jean Bart改",
+            "en": "Jean Bart Kai"
+        },
         "877": {
             "jp": "Conte di Cavour",
             "en": "Conte di Cavour"
@@ -5737,6 +5837,10 @@
             "jp": "昭南",
             "en": "Shounan"
         },
+        "896": {
+            "jp": "Brooklyn",
+            "en": "Brooklyn"
+        },
         "900": {
             "jp": "山汐丸",
             "en": "Yamashio Maru"
@@ -5765,6 +5869,10 @@
             "jp": "Maryland",
             "en": "Maryland"
         },
+        "915": {
+            "jp": "早潮改二",
+            "en": "Hayashio Kai Ni"
+        },
         "916": {
             "jp": "大和改二重",
             "en": "Yamato Kai Ni Juu"
@@ -5772,6 +5880,42 @@
         "918": {
             "jp": "Maryland改",
             "en": "Maryland Kai"
+        },
+        "920": {
+            "jp": "Samuel B.Roberts Mk.II",
+            "en": "Samuel B. Roberts Mk.II"
+        },
+        "921": {
+            "jp": "鵜来",
+            "en": "鵜来"
+        },
+        "925": {
+            "jp": "Langley",
+            "en": "Langley"
+        },
+        "926": {
+            "jp": "鵜来改",
+            "en": "鵜来 Kai"
+        },
+        "930": {
+            "jp": "Langley改",
+            "en": "Langley Kai"
+        },
+        "931": {
+            "jp": "Ranger",
+            "en": "Ranger"
+        },
+        "933": {
+            "jp": "Massachusetts",
+            "en": "Massachusetts"
+        },
+        "935": {
+            "jp": "Jean Bart",
+            "en": "Jean Bart"
+        },
+        "938": {
+            "jp": "Massachusetts改",
+            "en": "Massachusetts Kai"
         },
         "1496": {
             "jp": "Colorado改",
@@ -8204,6 +8348,130 @@
         "2114": {
             "jp": "近代化戦艦棲姫-壊",
             "en": "Modernized Battleship Princess (Damaged)"
+        },
+        "2115": {
+            "jp": "空母ヲ級改II",
+            "en": "Wo-Class Standard Carrier Kai B"
+        },
+        "2116": {
+            "jp": "空母ヲ級改II",
+            "en": "Wo-Class Standard Carrier Kai B"
+        },
+        "2117": {
+            "jp": "空母夏姫II",
+            "en": "Summer Aircraft Carrier Princess B"
+        },
+        "2118": {
+            "jp": "空母夏姫II",
+            "en": "Summer Aircraft Carrier Princess B"
+        },
+        "2119": {
+            "jp": "空母夏姫II",
+            "en": "Summer Aircraft Carrier Princess B"
+        },
+        "2120": {
+            "jp": "高速軽空母水鬼",
+            "en": "高速軽空母水鬼"
+        },
+        "2121": {
+            "jp": "高速軽空母水鬼",
+            "en": "高速軽空母水鬼"
+        },
+        "2122": {
+            "jp": "高速軽空母水鬼",
+            "en": "高速軽空母水鬼"
+        },
+        "2123": {
+            "jp": "高速軽空母水鬼-壊",
+            "en": "高速軽空母水鬼 (Damaged)"
+        },
+        "2124": {
+            "jp": "高速軽空母水鬼-壊",
+            "en": "高速軽空母水鬼 (Damaged)"
+        },
+        "2125": {
+            "jp": "高速軽空母水鬼-壊",
+            "en": "高速軽空母水鬼 (Damaged)"
+        },
+        "2126": {
+            "jp": "試作空母姫 バカンスmode",
+            "en": "試作空母姫 Vacation Mode"
+        },
+        "2127": {
+            "jp": "試作空母姫 バカンスmode",
+            "en": "試作空母姫 Vacation Mode"
+        },
+        "2128": {
+            "jp": "試作空母姫 バカンスmode",
+            "en": "試作空母姫 Vacation Mode"
+        },
+        "2129": {
+            "jp": "試作空母姫 バカンスmode-壊",
+            "en": "試作空母姫 Vacation Mode (Damaged)"
+        },
+        "2130": {
+            "jp": "試作空母姫 バカンスmode-壊",
+            "en": "試作空母姫 Vacation Mode (Damaged)"
+        },
+        "2131": {
+            "jp": "試作空母姫 バカンスmode-壊",
+            "en": "試作空母姫 Vacation Mode (Damaged)"
+        },
+        "2132": {
+            "jp": "戦艦未完棲姫",
+            "en": "戦艦未完棲姫"
+        },
+        "2133": {
+            "jp": "戦艦未完棲姫",
+            "en": "戦艦未完棲姫"
+        },
+        "2134": {
+            "jp": "戦艦未完棲姫",
+            "en": "戦艦未完棲姫"
+        },
+        "2135": {
+            "jp": "戦艦未完棲姫-壊",
+            "en": "戦艦未完棲姫 (Damaged)"
+        },
+        "2136": {
+            "jp": "戦艦未完棲姫-壊",
+            "en": "戦艦未完棲姫 (Damaged)"
+        },
+        "2137": {
+            "jp": "戦艦未完棲姫-壊",
+            "en": "戦艦未完棲姫 (Damaged)"
+        },
+        "2138": {
+            "jp": "集積地棲姫III バカンスmode",
+            "en": "Supply Depot Princess C Vacation Mode"
+        },
+        "2139": {
+            "jp": "集積地棲姫III バカンスmode-壊",
+            "en": "Supply Depot Princess C Vacation Mode (Damaged)"
+        },
+        "2140": {
+            "jp": "集積地棲姫III バカンスmode",
+            "en": "Supply Depot Princess C Vacation Mode"
+        },
+        "2141": {
+            "jp": "集積地棲姫III バカンスmode-壊",
+            "en": "Supply Depot Princess C Vacation Mode (Damaged)"
+        },
+        "2142": {
+            "jp": "集積地棲姫III バカンスmode",
+            "en": "Supply Depot Princess C Vacation Mode"
+        },
+        "2143": {
+            "jp": "集積地棲姫III バカンスmode-壊",
+            "en": "Supply Depot Princess C Vacation Mode (Damaged)"
+        },
+        "2144": {
+            "jp": "集積地棲姫III バカンスmode",
+            "en": "Supply Depot Princess C Vacation Mode"
+        },
+        "2145": {
+            "jp": "集積地棲姫III バカンスmode-壊",
+            "en": "Supply Depot Princess C Vacation Mode (Damaged)"
         }
     }
 }

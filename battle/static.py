@@ -107,20 +107,20 @@ SUMMER_HEAVY_CRUISER_PRINCESS_SEAPLANE_MODIFIER = 1.15
 SUMMER_HEAVY_CRUISER_AP_MODIFIER = 1.1
 
 SDH_IDS = [
-    1653, 1654, 1655,       # Base
-    1656, 1657, 1658,       # Damaged
-    1809, 1810, 1811,       # Vacation
-    1812, 1813, 1814,       # Vacation Damaged
-    1921, 1922, 1923,       # B
-    1924, 1925, 1926,       # B damaged
-    1933, 1934, 1935,       # B landing mode
-    1936, 1937, 1938,       # B landing mode damaged
-    1994,                   # B
-    1995,                   # B Damaged
+    1653, 1654, 1655,        # Base
+    1656, 1657, 1658,        # Damaged
+    1809, 1810, 1811,        # Vacation
+    1812, 1813, 1814,        # Vacation Damaged
+    1921, 1922, 1923,        # B
+    1924, 1925, 1926,        # B damaged
+    1933, 1934, 1935,        # B landing mode
+    1936, 1937, 1938,        # B landing mode damaged
+    1994,                    # B
+    1995,                    # B Damaged
     2015, 2016, 2017, 2018,  # B vacation
     2019, 2020, 2021, 2022,  # B vacation damaged
-    2084, 2086, 2088,       # C
-    2085, 2087, 2089,       # C damaged
+    2084, 2086, 2088,        # C
+    2085, 2087, 2089,        # C damaged
 ]
 SDH_WG42_MODIFIER = [1, 1.25, 1.625]
 SDH_TYPE4_ROCKET_MODIFIER = [1, 1.2, 1.68]
@@ -266,9 +266,16 @@ YASEN_CUTIN_MODIFIER = {
     104: 2.2,
     300: 1.2,
     301: 1.2,
-    302: 1.2
+    302: 1.2,
+    400: 1.5,
+    401: 1.4
 }
 YASEN_DDCI_TYPE_D_MODIFIER = [1, 1.25, 1.4]
+YASEN_NIGHT_CONTACT_MODIFIER = {
+    1: 5,
+    2: 7,
+    3: 9
+}
 
 KOUKU_SIDE_TERMS = [
     ["api_edam", "api_ecl_flag", "api_ebak_flag", "api_erai_flag"],

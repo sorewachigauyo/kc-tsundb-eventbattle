@@ -271,9 +271,12 @@ def calculate_special_attack_modifier(attack: HougekiAttack, attacker: PlayerShi
         if thirdshot:
             cutin_modifier = 1.55
 
-            # Yamato-class K2 bonus
-        if partner_ship_id in [546, 911, 916]:
+        # Yamato-class K2 bonus
+        if partner_ship_id in [546, 911]:
             cutin_modifier *= 1.2 if thirdshot else 1.1
+
+        elif partner_ship_id == 916:
+            cutin_modifier *= 1.25 if thirdshot else 1.1
 
         # AP Shell bonus
         if attacker.has_equip_type(19, 2):
@@ -352,7 +355,7 @@ def calculate_base_asw_power(ship: PlayerShip):
     # ASW equip synergy
     synergy_modifier = 1
     has_dc = ship.has_equip([226, 227, 378, 439])
-    has_dcp = ship.has_equip([44, 45, 287, 288, 377])
+    has_dcp = ship.has_equip([44, 45, 287, 288, 377, 472])
 
     # DC + DCP
     if has_dc and has_dcp:
@@ -627,8 +630,8 @@ def calculate_anti_installation_precap(num: float, attacker: PlayerShip, defende
             basic_bonus[0] *= HARBOUR_SUMMER_PRINCESS_SEAPLANE_MODIFIER
 
         # Kami
-        basic_bonus[0] *= HARBOUR_SUMMER_PRINCESS_KAMI_MODIFIER[min(
-            kami_count, 2)]
+        if kami_count:
+            basic_bonus[0] *= HARBOUR_SUMMER_PRINCESS_KAMI_MODIFIER
 
         # Bombers
         bcount = attacker.count_equip_by_type(7, 2)

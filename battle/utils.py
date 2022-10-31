@@ -9,7 +9,7 @@ from battle.static import HougekiAttack, HouraiAttackSupport, KoukuAttack, Kouku
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
 from objects.static import BATTLEORDER, FLEETTYPE, PHASE, SIDE, STYPE
-from utils import fetch_ship_master
+from utils import fetch_equip_master, fetch_ship_master
 
 
 def calculate_damage_range(attacker: PlayerShip, defender: EnemyShip, num: float):
@@ -43,13 +43,11 @@ def reversed_attack_power(attacker: PlayerShip, defender: EnemyShip, actual_dama
     if defender.is_submarine():
         de_bonus = 1 if attacker.stype == STYPE.DE else 0
 
-        # Type 95 DC
-        if attacker.has_equip(226):
-            armor -= np.sqrt(2) + de_bonus
-
-        # Type 2 DC
-        if attacker.has_equip(227):
-            armor -= np.sqrt(5) + de_bonus
+        for equip_id in [226, 227, 377, 378, 439, 472]:
+            if attacker.has_equip(equip_id):
+               count = attacker.count_equip(equip_id)
+               master = fetch_equip_master(equip_id)
+               armor -= (np.sqrt(master["api_tais"]) + de_bonus) * count
 
         armor = max(armor, 1)
 
@@ -143,15 +141,17 @@ def kouku_handler(rawapi: Union[dict, None], phase: str, battle: Battle) -> List
                 res += Kouku(rawapi["api_stage3_combined"],
                              phase, side=SIDE.FRIEND)
 
-        res += Kouku(rawapi["api_stage3"], phase, side=SIDE.PLAYER)
-        res += Kouku(rawapi["api_stage3"], phase, side=SIDE.ENEMY)
+        else:
 
-        if battle.ecombined:
-            res += Kouku(rawapi["api_stage3_combined"],
-                         phase, side=SIDE.PLAYER, combined=True)
+            res += Kouku(rawapi["api_stage3"], phase, side=SIDE.PLAYER)
+            res += Kouku(rawapi["api_stage3"], phase, side=SIDE.ENEMY)
 
-        if battle.fcombined:
-            res += Kouku(rawapi["api_stage3_combined"], phase, side=SIDE.ENEMY, combined=True)
+            if battle.ecombined:
+                res += Kouku(rawapi["api_stage3_combined"],
+                            phase, side=SIDE.PLAYER, combined=True)
+
+            if battle.fcombined:
+                res += Kouku(rawapi["api_stage3_combined"], phase, side=SIDE.ENEMY, combined=True)
 
     return res
 
@@ -189,6 +189,7 @@ def midnight_handler(rawapi: Union[dict, None], phase: str, battle: Battle):
         return []
     if phase == PHASE.FRIENDLY_SHELLING:
         rawapi = rawapi["api_hougeki"]
+        return Midnight(rawapi, phase)
     combined = battle.player_fleet.fleet_type != FLEETTYPE.SINGLE
     if None in rawapi.values():
         return []
