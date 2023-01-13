@@ -3,7 +3,7 @@ import numpy as np
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
 from objects.static import FLEETORDER, FLEETTYPE, FORMATION, PHASE, SIDE, SPEED, STYPE
-from utils import fetch_equip_master, get_gear_improvement_stats
+from data.utils import fetch_equip_master, get_gear_improvement_stats
 from battle.static import *
 
 

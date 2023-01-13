@@ -1,0 +1,1 @@
+from translation.main import fetch_ship_translation, fetch_equip_translation

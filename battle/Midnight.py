@@ -5,7 +5,7 @@ from battle.static import *
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, FriendShip, PlayerShip
 from objects.static import FORMATION, PHASE, SIDE, SPEED, STYPE
-from utils import fetch_equip_master, get_gear_improvement_stats
+from data.utils import fetch_equip_master, get_gear_improvement_stats
 
 
 def Midnight(rawapi: dict, phase: str, combined=False):

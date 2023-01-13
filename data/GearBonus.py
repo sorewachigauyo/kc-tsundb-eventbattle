@@ -4,7 +4,7 @@ With reference to https://github.com/KC3Kai/KC3Kai/blob/master/src/library/objec
 """
 import json
 import copy
-from utils import fetch_equip_master, find_ship_origin, find_remodel_group
+from data.utils import fetch_equip_master, find_ship_origin, find_remodel_group
 
 with open("./data/KC3GearBonus.json") as r:
     data = json.load(r)

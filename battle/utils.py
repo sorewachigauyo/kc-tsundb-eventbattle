@@ -9,7 +9,7 @@ from battle.static import HougekiAttack, HouraiAttackSupport, KoukuAttack, Kouku
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
 from objects.static import BATTLEORDER, FLEETTYPE, PHASE, SIDE, STYPE
-from utils import fetch_equip_master, fetch_ship_master
+from data.utils import fetch_equip_master, fetch_ship_master
 
 
 def calculate_damage_range(attacker: PlayerShip, defender: EnemyShip, num: float):

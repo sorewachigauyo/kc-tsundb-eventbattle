@@ -4,7 +4,7 @@ from battle.static import DAMAGE_MODIFIER_RAIGEKI, ENGAGEMENT_MODIFIERS, HITSTAT
 from objects.Battle import Battle
 from objects.Ship import EnemyShip, PlayerShip
 from objects.static import FLEETTYPE, SIDE
-from utils import get_gear_improvement_stats
+from data.utils import get_gear_improvement_stats
 
 def Raigeki(rawapi: dict, phase: str):
     return [
