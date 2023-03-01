@@ -1,4 +1,4 @@
-from data.static_battle import SPECIAL_ATTACKS, SPECIAL_ATTACK_ATTACKER_MAPPING, PHASE
+from battle.static import SPECIAL_ATTACKS, SPECIAL_ATTACK_ATTACKER_MAPPING, PHASE
 from data.static import SIDE
 
 def is_special_attack(cutin_id: int) -> bool:

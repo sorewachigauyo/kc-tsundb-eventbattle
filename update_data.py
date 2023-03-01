@@ -30,3 +30,7 @@ for line in r.text.splitlines():
 
 with open(data_folder / WCTF_DB_FILENAME, "w+") as w:
     json.dump(wctf_db, w, indent=4)
+
+# Edges
+with open(data_folder / "edges.json", "wb+") as w:
+    w.write(requests.get("https://raw.githubusercontent.com/KC3Kai/KC3Kai/develop/src/data/edges.json").content)

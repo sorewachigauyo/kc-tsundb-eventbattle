@@ -2288,7 +2288,7 @@
         "461": {
             "icon": 5,
             "jp": "熟練聴音員+後期型艦首魚雷(4門)",
-            "en": "熟練聴音員+後期型艦首魚雷(4門)"
+            "en": "Skilled Sonar Personnel + Late Model Bow Torpedo Mount (4 tubes)"
         },
         "463": {
             "icon": 4,
@@ -2338,7 +2338,7 @@
         "472": {
             "icon": 17,
             "jp": "Mk.32 対潜魚雷(Mk.2落射機)",
-            "en": "Mk.32 対潜魚雷(Mk.2落射機)"
+            "en": "Mk.32 ASW Torpedo (Mk.2 Thrower)"
         },
         "473": {
             "icon": 45,
@@ -2363,12 +2363,12 @@
         "477": {
             "icon": 29,
             "jp": "熟練甲板要員",
-            "en": "熟練甲板要員"
+            "en": "Skilled Deck Personnel"
         },
         "478": {
             "icon": 29,
             "jp": "熟練甲板要員+航空整備員",
-            "en": "熟練甲板要員+航空整備員"
+            "en": "Skilled Deck Personnel + Aviation Maintenance Hands"
         },
         "479": {
             "icon": 37,
@@ -2388,649 +2388,684 @@
         "482": {
             "icon": 20,
             "jp": "特大発動艇+Ⅲ号戦車(北アフリカ仕様)",
-            "en": "特大発動艇+Ⅲ号戦車(北アフリカ仕様)"
+            "en": "Toku Daihatsu Landing Craft + Panzer III (North African Specification)"
         },
-        "501": {
+        "483": {
+            "icon": 12,
+            "jp": "三式弾改二",
+            "en": "Type 3 Shell Kai Ni"
+        },
+        "484": {
+            "icon": 37,
+            "jp": "四式重爆 飛龍(熟練)+イ号一型甲 誘導弾",
+            "en": "Type 4 Heavy Bomber Hiryuu (Skilled) + No.1 Model 1A Guided Missile"
+        },
+        "485": {
+            "icon": 43,
+            "jp": "強風改二",
+            "en": "Kyoufuu Kai Ni"
+        },
+        "486": {
+            "icon": 6,
+            "jp": "零式艦戦64型(制空戦闘機仕様)",
+            "en": "Type 0 Fighter Model 64 (Air Superiority Fighter Specification)"
+        },
+        "487": {
+            "icon": 7,
+            "jp": "零式艦戦64型(熟練爆戦)",
+            "en": "Type 0 Fighter Model 64 (Skilled Fighter-bomber)"
+        },
+        "488": {
+            "icon": 17,
+            "jp": "二式爆雷改二",
+            "en": "Type 2 Depth Charge Kai Ni"
+        },
+        "489": {
+            "icon": 22,
+            "jp": "一式戦 隼II型改(20戦隊)",
+            "en": "Type 1 Fighter Hayabusa Model II Kai (20th Squadron)"
+        },
+        "1501": {
             "icon": 1,
             "jp": "5inch単装砲",
             "en": "5inch Single Gun Mount"
         },
-        "502": {
+        "1502": {
             "icon": 1,
             "jp": "5inch連装砲",
             "en": "5inch Twin Gun Mount"
         },
-        "503": {
+        "1503": {
             "icon": 16,
             "jp": "3inch単装高角砲",
             "en": "3inch Single High-angle Gun Mount"
         },
-        "504": {
+        "1504": {
             "icon": 2,
             "jp": "5inch単装高射砲",
             "en": "5inch Single Anti-Aircraft Gun Mount"
         },
-        "505": {
+        "1505": {
             "icon": 2,
             "jp": "8inch三連装砲",
             "en": "8inch Triple Gun Mount"
         },
-        "506": {
+        "1506": {
             "icon": 2,
             "jp": "6inch連装速射砲",
             "en": "6inch Twin Rapid Fire Gun Mount"
         },
-        "507": {
+        "1507": {
             "icon": 3,
             "jp": "14inch連装砲",
             "en": "14inch Twin Gun Mount"
         },
-        "508": {
+        "1508": {
             "icon": 3,
             "jp": "16inch連装砲",
             "en": "16inch Twin Gun Mount"
         },
-        "509": {
+        "1509": {
             "icon": 3,
             "jp": "16inch三連装砲",
             "en": "16inch Triple Gun Mount"
         },
-        "510": {
+        "1510": {
             "icon": 16,
             "jp": "5inch単装高射砲",
             "en": "5inch Single Anti-Aircraft Gun Mount"
         },
-        "511": {
+        "1511": {
             "icon": 4,
             "jp": "6inch単装砲",
             "en": "6inch Single Gun Mount"
         },
-        "512": {
+        "1512": {
             "icon": 4,
             "jp": "12.5inch連装副砲",
             "en": "12.5inch Twin Secondary Gun Mount"
         },
-        "513": {
+        "1513": {
             "icon": 5,
             "jp": "21inch魚雷前期型",
             "en": "21inch Torpedo Early Model"
         },
-        "514": {
+        "1514": {
             "icon": 5,
             "jp": "21inch魚雷後期型",
             "en": "21inch Torpedo Late Model"
         },
-        "515": {
+        "1515": {
             "icon": 5,
             "jp": "高速深海魚雷",
             "en": "High-speed Abyssal Torpedo"
         },
-        "516": {
+        "1516": {
             "icon": 8,
             "jp": "深海棲艦攻",
             "en": "Abyssal Torpedo Bomber"
         },
-        "517": {
+        "1517": {
             "icon": 8,
             "jp": "深海棲艦攻 Mark.II",
             "en": "Abyssal Torpedo Bomber Mark.II"
         },
-        "518": {
+        "1518": {
             "icon": 8,
             "jp": "深海棲艦攻 Mark.III",
             "en": "Abyssal Torpedo Bomber Mark.III"
         },
-        "519": {
+        "1519": {
             "icon": 6,
             "jp": "深海棲艦戦",
             "en": "Abyssal Fighter"
         },
-        "520": {
+        "1520": {
             "icon": 6,
             "jp": "深海棲艦戦 Mark.II",
             "en": "Abyssal Fighter Mark.II"
         },
-        "521": {
+        "1521": {
             "icon": 6,
             "jp": "深海棲艦戦 Mark.III",
             "en": "Abyssal Fighter Mark.III"
         },
-        "522": {
+        "1522": {
             "icon": 6,
             "jp": "飛び魚艦戦",
             "en": "Flying Fish Fighter"
         },
-        "523": {
+        "1523": {
             "icon": 7,
             "jp": "深海棲艦爆",
             "en": "Abyssal Dive Bomber"
         },
-        "524": {
+        "1524": {
             "icon": 7,
             "jp": "深海棲艦爆 Mark.II",
             "en": "Abyssal Dive Bomber Mark.II"
         },
-        "525": {
+        "1525": {
             "icon": 10,
             "jp": "深海棲艦偵察機",
             "en": "Abyssal Reconnaissance Plane"
         },
-        "526": {
+        "1526": {
             "icon": 10,
             "jp": "飛び魚偵察機",
             "en": "Flying Fish Reconnaissance Plane"
         },
-        "527": {
+        "1527": {
             "icon": 11,
             "jp": "対空レーダ― Mark.I",
             "en": "Air Radar Mark.I"
         },
-        "528": {
+        "1528": {
             "icon": 11,
             "jp": "水上レーダ― Mark.I",
             "en": "Surface Radar Mark.I"
         },
-        "529": {
+        "1529": {
             "icon": 11,
             "jp": "水上レーダ― Mark.II",
             "en": "Surface Radar Mark.II"
         },
-        "530": {
+        "1530": {
             "icon": 11,
             "jp": "対空レーダ― Mark.II",
             "en": "Air Radar Mark.II"
         },
-        "531": {
+        "1531": {
             "icon": 11,
             "jp": "深海水上レーダー",
             "en": "Abyssal Surface Radar"
         },
-        "532": {
+        "1532": {
             "icon": 11,
             "jp": "深海対空レーダ―",
             "en": "Abyssal Air Radar"
         },
-        "533": {
+        "1533": {
             "icon": 19,
             "jp": "改良型深海タービン",
             "en": "Improved Abyssal Turbine"
         },
-        "534": {
+        "1534": {
             "icon": 19,
             "jp": "強化型深海缶",
             "en": "Enhanced Abyssal Boiler"
         },
-        "535": {
+        "1535": {
             "icon": 12,
             "jp": "対空散弾",
             "en": "Anti-Air Dispersal Shell"
         },
-        "536": {
+        "1536": {
             "icon": 13,
             "jp": "劣化徹甲弾",
             "en": "Deterioration Armor Piercing Shell"
         },
-        "537": {
+        "1537": {
             "icon": 15,
             "jp": "12.7mm機銃",
             "en": "12.7mm Machine Gun"
         },
-        "538": {
+        "1538": {
             "icon": 15,
             "jp": "20mm機銃",
             "en": "20mm Autocannon"
         },
-        "539": {
+        "1539": {
             "icon": 15,
             "jp": "40mm二連装機関砲",
             "en": "40mm Twin Autocannon Mount"
         },
-        "540": {
+        "1540": {
             "icon": 15,
             "jp": "40mm四連装機関砲",
             "en": "40mm Quadruple Autocannon Mount"
         },
-        "541": {
+        "1541": {
             "icon": 5,
             "jp": "深海烏賊魚雷",
             "en": "Abyssal Cuttlefish Torpedo"
         },
-        "542": {
+        "1542": {
             "icon": 17,
             "jp": "深海爆雷投射機",
             "en": "Abyssal Depth Charge Projector"
         },
-        "543": {
+        "1543": {
             "icon": 18,
             "jp": "深海ソナー",
             "en": "Abyssal Sonar"
         },
-        "544": {
+        "1544": {
             "icon": 17,
             "jp": "深海爆雷投射機 Mk.II",
             "en": "Abyssal Depth Charge Projector Mk.II"
         },
-        "545": {
+        "1545": {
             "icon": 18,
             "jp": "深海ソナー Mk.II",
             "en": "Abyssal Sonar Mk.II"
         },
-        "546": {
+        "1546": {
             "icon": 7,
             "jp": "飛び魚艦爆",
             "en": "Flying Fish Dive Bomber"
         },
-        "547": {
+        "1547": {
             "icon": 6,
             "jp": "深海猫艦戦",
             "en": "Abyssal Cat Fighter"
         },
-        "548": {
+        "1548": {
             "icon": 7,
             "jp": "深海地獄艦爆",
             "en": "Abyssal Hell Dive Bomber"
         },
-        "549": {
+        "1549": {
             "icon": 8,
             "jp": "深海復讐艦攻",
             "en": "Abyssal Revenge Torpedo Bomber"
         },
-        "550": {
+        "1550": {
             "icon": 16,
             "jp": "5inch連装両用莢砲",
             "en": "5inch Twin Dual Purpose Gun Mount"
         },
-        "551": {
+        "1551": {
             "icon": 3,
             "jp": "20inch連装砲",
             "en": "20inch Twin Gun Mount"
         },
-        "552": {
+        "1552": {
             "icon": 3,
             "jp": "15inch要塞砲",
             "en": "15inch Coastal Artillery"
         },
-        "553": {
+        "1553": {
             "icon": 16,
             "jp": "4inch連装両用砲+CIC",
             "en": "4inch Twin Dual Purpose Gun Mount + CIC"
         },
-        "554": {
+        "1554": {
             "icon": 10,
             "jp": "深海水上攻撃機",
             "en": "Abyssal Attack Seaplane"
         },
-        "555": {
+        "1555": {
             "icon": 10,
             "jp": "深海水上攻撃機改",
             "en": "Abyssal Attack Seaplane Kai"
         },
-        "556": {
+        "1556": {
             "icon": 6,
             "jp": "深海猫艦戦改",
             "en": "Abyssal Cat Fighter Kai"
         },
-        "557": {
+        "1557": {
             "icon": 7,
             "jp": "深海地獄艦爆改",
             "en": "Abyssal Hell Dive Bomber Kai"
         },
-        "558": {
+        "1558": {
             "icon": 8,
             "jp": "深海復讐艦攻改",
             "en": "Abyssal Revenge Torpedo Bomber Kai"
         },
-        "559": {
+        "1559": {
             "icon": 18,
             "jp": "深海FCS+CIC",
             "en": "Abyssal FCS + CIC"
         },
-        "560": {
+        "1560": {
             "icon": 24,
             "jp": "深海探照灯",
             "en": "Abyssal Searchlight"
         },
-        "561": {
+        "1561": {
             "icon": 7,
             "jp": "深海解放陸爆",
             "en": "Abyssal Liberation Land-based Dive Bomber"
         },
-        "562": {
+        "1562": {
             "icon": 7,
             "jp": "深海解放陸爆Ace",
             "en": "Abyssal Liberation Land-based Dive Bomber Ace"
         },
-        "563": {
+        "1563": {
             "icon": 2,
             "jp": "8inch長射程連装砲",
             "en": "8inch Long Range Twin Gun Mount"
         },
-        "564": {
+        "1564": {
             "icon": 10,
             "jp": "深海水上偵察観測機",
             "en": "Abyssal Reconnaissance Observation Seaplane"
         },
-        "565": {
+        "1565": {
             "icon": 1,
             "jp": "5inch沿岸設置砲",
             "en": "5inch Coastal Gun"
         },
-        "566": {
+        "1566": {
             "icon": 7,
             "jp": "深海猫艦戦(爆装)",
             "en": "Abyssal Cat Fighter (Bombing)"
         },
-        "567": {
+        "1567": {
             "icon": 11,
             "jp": "沿岸設置レーダー",
             "en": "Coastal Radar"
         },
-        "568": {
+        "1568": {
             "icon": 3,
             "jp": "16inch三連装砲",
             "en": "16inch Triple Gun Mount"
         },
-        "569": {
+        "1569": {
             "icon": 10,
             "jp": "深海偵察飛行艇",
             "en": "Abyssal Reconnaissance Flying Boat"
         },
-        "570": {
+        "1570": {
             "icon": 5,
             "jp": "高速深海魚雷 mod.2",
             "en": "High-speed Abyssal Torpedo mod.2"
         },
-        "571": {
+        "1571": {
             "icon": 10,
             "jp": "深海水母小鬼機",
             "en": "Abyssal Seaplane Tender Imp Aircraft"
         },
-        "572": {
+        "1572": {
             "icon": 6,
             "jp": "深海熊猫艦戦",
             "en": "Abyssal Bearcat Fighter"
         },
-        "573": {
+        "1573": {
             "icon": 10,
             "jp": "深海潜水下駄履き",
             "en": "Abyssal Submarine Floatplane"
         },
-        "574": {
+        "1574": {
             "icon": 8,
             "jp": "深海攻撃哨戒鷹",
             "en": "Abyssal Patrolling Attack Hawk"
         },
-        "575": {
+        "1575": {
             "icon": 8,
             "jp": "深海攻撃哨戒鷹改",
             "en": "Abyssal Patrolling Attack Hawk Kai"
         },
-        "576": {
+        "1576": {
             "icon": 3,
             "jp": "深海12inch三連装砲",
             "en": "Abyssal 12inch Triple Gun Mount"
         },
-        "577": {
+        "1577": {
             "icon": 3,
             "jp": "深海15inch四連装砲",
             "en": "Abyssal 15inch Quadruple Gun Mount"
         },
-        "578": {
+        "1578": {
             "icon": 16,
             "jp": "深海15inch連装砲後期型",
             "en": "Abyssal 15inch Late Model Twin Gun Mount"
         },
-        "579": {
+        "1579": {
             "icon": 1,
             "jp": "深海14inch海峡連装砲",
             "en": "Abyssal 14inch Strait Twin Gun Mount"
         },
-        "580": {
+        "1580": {
             "icon": 5,
             "jp": "深海待伏魚雷",
             "en": "Abyssal Ambush Torpedo"
         },
-        "581": {
+        "1581": {
             "icon": 45,
             "jp": "夜猫深海艦戦",
             "en": "Abyssal Night Cat Fighter"
         },
-        "582": {
+        "1582": {
             "icon": 7,
             "jp": "夜深海艦爆",
             "en": "Abyssal Night Dive Bomber"
         },
-        "583": {
+        "1583": {
             "icon": 46,
             "jp": "夜復讐深海艦攻",
             "en": "Abyssal Night Revenge Torpedo Bomber"
         },
-        "584": {
+        "1584": {
             "icon": 3,
             "jp": "深海14inch連装砲改",
             "en": "Abyssal 14inch Twin Gun Mount Kai"
         },
-        "585": {
+        "1585": {
             "icon": 3,
             "jp": "深海16inch三連装砲改",
             "en": "Abyssal 16inch Triple Gun Mount Kai"
         },
-        "586": {
+        "1586": {
             "icon": 8,
             "jp": "深海攻撃哨戒鷹改二",
             "en": "Abyssal Patrolling Attack Hawk Kai Ni"
         },
-        "587": {
+        "1587": {
             "icon": 3,
             "jp": "深海16inch三連装砲改二",
             "en": "Abyssal 16inch Triple Gun Mount Kai Ni"
         },
-        "588": {
+        "1588": {
             "icon": 1,
             "jp": "深海5inch連装砲C型",
             "en": "Abyssal 5inch Twin Gun Mount Model C"
         },
-        "589": {
+        "1589": {
             "icon": 2,
             "jp": "深海5.5inch連装砲改",
             "en": "Abyssal 5.5inch Twin Gun Mount Kai"
         },
-        "590": {
+        "1590": {
             "icon": 5,
             "jp": "深海標的",
             "en": "Abyssal Target"
         },
-        "591": {
+        "1591": {
             "icon": 16,
             "jp": "深海5inch単装砲 Mk.30",
             "en": "Abyssal 5inch Single Gun Mount Mk.30"
         },
-        "592": {
+        "1592": {
             "icon": 3,
             "jp": "深海16inch Mk.VIII連装砲改",
             "en": "Abyssal 16inch Mk.VIII Twin Gun Mount Kai"
         },
-        "593": {
+        "1593": {
             "icon": 5,
             "jp": "高速深海魚雷 mod.3",
             "en": "High-speed Abyssal Torpedo mod.3"
         },
-        "594": {
+        "1594": {
             "icon": 7,
             "jp": "深海空要塞(偵察型)",
             "en": "Abyssal Sky Fortress (Reconnaissance Model)"
         },
-        "595": {
+        "1595": {
             "icon": 7,
             "jp": "深海空要塞Ace(偵察型)",
             "en": "Abyssal Sky Fortress Ace (Reconnaissance Model)"
         },
-        "596": {
+        "1596": {
             "icon": 2,
             "jp": "深海6inch三連装新型速射砲",
             "en": "Abyssal New Model 6inch Triple Rapid Fire Gun Mount"
         },
-        "597": {
+        "1597": {
             "icon": 7,
             "jp": "深海空要塞(重爆型)",
             "en": "Abyssal Sky Fortress (Heavy Bomber Model)"
         },
-        "598": {
+        "1598": {
             "icon": 7,
             "jp": "深海空要塞Ace(重爆型)",
             "en": "Abyssal Sky Fortress Ace (Heavy Bomber Model)"
         },
-        "599": {
+        "1599": {
             "icon": 16,
             "jp": "深海4.7inch砲 Mk.XII",
             "en": "Abyssal 4.7inch Gun Mk.XII"
         },
-        "600": {
+        "1600": {
             "icon": 2,
             "jp": "深海8inch連装速射砲",
             "en": "Abyssal 8inch Twin Rapid Fire Gun Mount"
         },
-        "601": {
+        "1601": {
             "icon": 2,
             "jp": "深海8inch三連装砲 Mk.9",
             "en": "Abyssal 8inch Triple Gun Mount Mk.9"
         },
-        "602": {
+        "1602": {
             "icon": 16,
             "jp": "深海5inch連装両用砲(集中配備)",
             "en": "Abyssal 5inch Twin Dual-purpose Gun Mount (Concentrated Deployment)"
         },
-        "603": {
+        "1603": {
             "icon": 11,
             "jp": "深海対空レーダーMark.III+FCS",
             "en": "Abyssal Air Radar Mark.III + FCS"
         },
-        "604": {
+        "1604": {
             "icon": 1,
             "jp": "深海5inch連装砲A型",
             "en": "Abyssal 5inch Twin Gun Mount Model A"
         },
-        "605": {
+        "1605": {
             "icon": 42,
             "jp": "深海潜水艦搭載電子兵装",
             "en": "Abyssal Submarine Electronic Armament"
         },
-        "606": {
+        "1606": {
             "icon": 16,
             "jp": "深海5inch単装高角砲改二",
             "en": "Abyssal 5inch Single High-angle Gun Mount Kai Ni"
         },
-        "607": {
+        "1607": {
             "icon": 16,
             "jp": "深海5inch連装高角砲改二",
             "en": "Abyssal 5inch Twin High-angle Gun Mount Kai Ni"
         },
-        "608": {
+        "1608": {
             "icon": 11,
             "jp": "深海夜間航空作戦装備",
             "en": "Abyssal Night Operation Aviation Equipment"
         },
-        "609": {
+        "1609": {
             "icon": 2,
             "jp": "深海16inch三連装砲 Mk6",
             "en": "Abyssal 16inch Triple Gun Mount Mk.6"
         },
-        "610": {
+        "1610": {
             "icon": 10,
             "jp": "深海カモメ水偵",
             "en": "Abyssal Seagull Reconnaissance Seaplane"
         },
-        "611": {
+        "1611": {
             "icon": 10,
             "jp": "深海海猫水偵",
             "en": "Abyssal Seamew Reconnaissance Seaplane"
         },
-        "612": {
+        "1612": {
             "icon": 2,
             "jp": "深海6inch三連装主砲 Mk.16",
             "en": "Abyssal 6inch Triple Main Gun Mount Mk.16"
         },
-        "613": {
+        "1613": {
             "icon": 3,
             "jp": "地中海12inch/46 連装砲",
             "en": "Mediterranean 12inch/46 Twin Gun Mount"
         },
-        "614": {
+        "1614": {
             "icon": 3,
             "jp": "地中海12inch/46 三連装砲",
             "en": "Mediterranean 12inch/46 Triple Gun Mount"
         },
-        "615": {
+        "1615": {
             "icon": 3,
             "jp": "地中海12.6inch/44 連装砲",
             "en": "Mediterranean 12.6inch/44 Twin Gun Mount"
         },
-        "616": {
+        "1616": {
             "icon": 3,
             "jp": "地中海12.6inch/44 三連装砲",
             "en": "Mediterranean 12.6inch/44 Triple Gun Mount"
         },
-        "617": {
+        "1617": {
             "icon": 45,
             "jp": "夜猫深海艦戦II",
             "en": "Abyssal Night Cat Fighter II"
         },
-        "618": {
+        "1618": {
             "icon": 7,
             "jp": "夜深海艦爆II",
             "en": "Abyssal Night Dive Bomber II"
         },
-        "619": {
+        "1619": {
             "icon": 46,
             "jp": "夜復讐深海艦攻II",
             "en": "Abyssal Night Revenge Torpedo Bomber II"
         },
-        "620": {
+        "1620": {
             "icon": 7,
             "jp": "深海戦爆複座鷹",
             "en": "Abyssal Two-seat Fighter-bomber Hawk"
         },
-        "621": {
+        "1621": {
             "icon": 7,
             "jp": "深海戦爆複座鷹改",
             "en": "Abyssal Two-seat Fighter-bomber Hawk Kai"
         },
-        "622": {
+        "1622": {
             "icon": 5,
             "jp": "深海四連装(酸素)魚雷後期型",
             "en": "Abyssal Quadruple (Oxygen) Torpedo Mount Late Model"
         },
-        "623": {
+        "1623": {
             "icon": 1,
             "jp": "深海5inch連装砲D型",
             "en": "Abyssal 5inch Twin Gun Mount Model D"
         },
-        "624": {
+        "1624": {
             "icon": 5,
             "jp": "深海五連装(酸素)魚雷後期型",
             "en": "Abyssal Quintuple (Oxygen) Torpedo Mount Late Model"
         },
-        "625": {
+        "1625": {
             "icon": 7,
             "jp": "深海双発陸爆",
             "en": "Abyssal Twin-engine Land-based Dive Bomber"
         },
-        "626": {
+        "1626": {
             "icon": 7,
             "jp": "深海双発陸爆Ace",
             "en": "Abyssal Twin-engine Land-based Dive Bomber Ace"
         },
-        "627": {
+        "1627": {
             "icon": 1,
             "jp": "深海5inch連装砲C型",
             "en": "Abyssal 5inch Twin Gun Mount Model C"
         },
-        "630": {
+        "1630": {
             "icon": 37,
             "jp": "深海空超要塞",
             "en": "Abyssal Sky Super Fortress"
         },
-        "631": {
+        "1631": {
             "icon": 37,
             "jp": "深海空超要塞改",
             "en": "Abyssal Sky Super Fortress Kai"
@@ -5767,7 +5802,7 @@
         },
         "721": {
             "jp": "夏雲改",
-            "en": "Summer 雲 Kai"
+            "en": "Natsugumo Kai"
         },
         "722": {
             "jp": "Brooklyn改",
@@ -5833,6 +5868,10 @@
             "jp": "Janus改",
             "en": "Janus Kai"
         },
+        "894": {
+            "jp": "鳳翔改二",
+            "en": "Houshou Kai Ni"
+        },
         "895": {
             "jp": "昭南",
             "en": "Shounan"
@@ -5840,6 +5879,10 @@
         "896": {
             "jp": "Brooklyn",
             "en": "Brooklyn"
+        },
+        "899": {
+            "jp": "鳳翔改二戦",
+            "en": "Houshou Kai Ni Sen"
         },
         "900": {
             "jp": "山汐丸",
@@ -5887,7 +5930,7 @@
         },
         "921": {
             "jp": "鵜来",
-            "en": "鵜来"
+            "en": "Ukuru"
         },
         "925": {
             "jp": "Langley",
@@ -5895,7 +5938,7 @@
         },
         "926": {
             "jp": "鵜来改",
-            "en": "鵜来 Kai"
+            "en": "Ukuru Kai"
         },
         "930": {
             "jp": "Langley改",
@@ -8371,75 +8414,75 @@
         },
         "2120": {
             "jp": "高速軽空母水鬼",
-            "en": "高速軽空母水鬼"
+            "en": "Fast Light Carrier Water Demon"
         },
         "2121": {
             "jp": "高速軽空母水鬼",
-            "en": "高速軽空母水鬼"
+            "en": "Fast Light Carrier Water Demon"
         },
         "2122": {
             "jp": "高速軽空母水鬼",
-            "en": "高速軽空母水鬼"
+            "en": "Fast Light Carrier Water Demon"
         },
         "2123": {
             "jp": "高速軽空母水鬼-壊",
-            "en": "高速軽空母水鬼 (Damaged)"
+            "en": "Fast Light Carrier Water Demon (Damaged)"
         },
         "2124": {
             "jp": "高速軽空母水鬼-壊",
-            "en": "高速軽空母水鬼 (Damaged)"
+            "en": "Fast Light Carrier Water Demon (Damaged)"
         },
         "2125": {
             "jp": "高速軽空母水鬼-壊",
-            "en": "高速軽空母水鬼 (Damaged)"
+            "en": "Fast Light Carrier Water Demon (Damaged)"
         },
         "2126": {
             "jp": "試作空母姫 バカンスmode",
-            "en": "試作空母姫 Vacation Mode"
+            "en": "Prototype Carrier Princess Vacation Mode"
         },
         "2127": {
             "jp": "試作空母姫 バカンスmode",
-            "en": "試作空母姫 Vacation Mode"
+            "en": "Prototype Carrier Princess Vacation Mode"
         },
         "2128": {
             "jp": "試作空母姫 バカンスmode",
-            "en": "試作空母姫 Vacation Mode"
+            "en": "Prototype Carrier Princess Vacation Mode"
         },
         "2129": {
             "jp": "試作空母姫 バカンスmode-壊",
-            "en": "試作空母姫 Vacation Mode (Damaged)"
+            "en": "Prototype Carrier Princess Vacation Mode (Damaged)"
         },
         "2130": {
             "jp": "試作空母姫 バカンスmode-壊",
-            "en": "試作空母姫 Vacation Mode (Damaged)"
+            "en": "Prototype Carrier Princess Vacation Mode (Damaged)"
         },
         "2131": {
             "jp": "試作空母姫 バカンスmode-壊",
-            "en": "試作空母姫 Vacation Mode (Damaged)"
+            "en": "Prototype Carrier Princess Vacation Mode (Damaged)"
         },
         "2132": {
             "jp": "戦艦未完棲姫",
-            "en": "戦艦未完棲姫"
+            "en": "Incomplete Battleship Princess"
         },
         "2133": {
             "jp": "戦艦未完棲姫",
-            "en": "戦艦未完棲姫"
+            "en": "Incomplete Battleship Princess"
         },
         "2134": {
             "jp": "戦艦未完棲姫",
-            "en": "戦艦未完棲姫"
+            "en": "Incomplete Battleship Princess"
         },
         "2135": {
             "jp": "戦艦未完棲姫-壊",
-            "en": "戦艦未完棲姫 (Damaged)"
+            "en": "Incomplete Battleship Princess (Damaged)"
         },
         "2136": {
             "jp": "戦艦未完棲姫-壊",
-            "en": "戦艦未完棲姫 (Damaged)"
+            "en": "Incomplete Battleship Princess (Damaged)"
         },
         "2137": {
             "jp": "戦艦未完棲姫-壊",
-            "en": "戦艦未完棲姫 (Damaged)"
+            "en": "Incomplete Battleship Princess (Damaged)"
         },
         "2138": {
             "jp": "集積地棲姫III バカンスmode",

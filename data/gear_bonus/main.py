@@ -1,3 +1,8 @@
+"""Visible equipment bonus handler.
+In game, this is handled via hardcoded conditionals in main.js, but it is difficult to maintain/automate the stat calculation.
+We borrow KC3's GearExplicitBonus table for a standard way to check and apply bonuses.
+"""
+
 import pathlib
 from collections import Counter
 from typing import List, Union, Dict
@@ -8,7 +13,7 @@ import numpy as np
 
 from data.master import fetch_equip_master
 from data.gear_bonus.static import (GearBonus, StatBonus, SynergyBonus, BonusDefinition, COUNT_TYPE, GEAR_BONUS_STAT_KEY, GEAR_BONUS_DEFINITION_KEY, SYNERGY_DEFINITION_KEY)
-from data.utils import load_json
+from data.utils import load_json, search_item_in_array_exists
 
 master_table = {
     "t2": {},
@@ -16,6 +21,12 @@ master_table = {
 }
 
 synergy_table = {}
+
+def check_valid_bonus(ship_id: int,  gear_bonus: GearBonus):
+    if gear_bonus.required_ship_id is not None and search_item_in_array_exists(gear_bonus.required_ship_id, ship_id):
+        return False
+
+    
 
 class GearTotalBonus:
     def __init__(self, equipment: List[int], improvement: List[int]):

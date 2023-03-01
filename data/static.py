@@ -291,5 +291,3 @@ class EQUIP_TYPE_3:
     HIGH_ANGLE_GUN = 16
     DEPTH_CHARGE = 17
     SONAR = 18
-
-

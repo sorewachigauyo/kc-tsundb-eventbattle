@@ -3,7 +3,7 @@ import pathlib
 
 from data.utils import load_json
 
-TL_FILEPATH = pathlib.Path(__file__).parent[0] / "idTL.json"
+TL_FILEPATH = pathlib.Path(__file__).parent / "idTL.json"
 TL_JP = "jp"
 TL_EN = "en"
 

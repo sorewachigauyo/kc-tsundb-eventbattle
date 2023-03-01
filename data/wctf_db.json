@@ -803,7 +803,7 @@
         "asw_base": 24,
         "asw_max": 59,
         "evasion_base": 45,
-        "evasion_max": 89,
+        "evasion_max": 91,
         "los_base": 7,
         "los_max": 39
     },
@@ -1899,9 +1899,9 @@
         "asw_base": 28,
         "asw_max": 72,
         "evasion_base": 64,
-        "evasion_max": 94,
+        "evasion_max": 95,
         "los_base": 11,
-        "los_max": 48
+        "los_max": 49
     },
     "206": {
         "asw_base": 24,
@@ -2107,7 +2107,7 @@
         "asw_base": 0,
         "asw_max": 0,
         "evasion_base": 38,
-        "evasion_max": 80,
+        "evasion_max": 81,
         "los_base": 12,
         "los_max": 49
     },
@@ -3557,7 +3557,7 @@
         "evasion_base": 47,
         "evasion_max": 94,
         "los_base": 10,
-        "los_max": 43
+        "los_max": 44
     },
     "164": {
         "asw_base": 16,
@@ -3653,7 +3653,7 @@
         "evasion_base": 51,
         "evasion_max": 91,
         "los_base": 9,
-        "los_max": 48
+        "los_max": 49
     },
     "80": {
         "asw_base": 0,
@@ -3845,7 +3845,7 @@
         "evasion_base": 52,
         "evasion_max": 90,
         "los_base": 14,
-        "los_max": 54
+        "los_max": 55
     },
     "575": {
         "asw_base": 30,
@@ -4033,9 +4033,9 @@
     },
     "557": {
         "asw_base": 31,
-        "asw_max": 70,
+        "asw_max": 71,
         "evasion_base": 52,
-        "evasion_max": 90,
+        "evasion_max": 91,
         "los_base": 10,
         "los_max": 52
     },
@@ -4233,11 +4233,11 @@
     },
     "228": {
         "asw_base": 27,
-        "asw_max": 59,
+        "asw_max": 60,
         "evasion_base": 67,
         "evasion_max": 99,
         "los_base": 8,
-        "los_max": 39
+        "los_max": 41
     },
     "640": {
         "asw_base": 0,
@@ -4605,7 +4605,7 @@
         "evasion_base": 50,
         "evasion_max": 92,
         "los_base": 9,
-        "los_max": 48
+        "los_max": 49
     },
     "554": {
         "asw_base": 68,
@@ -4675,9 +4675,9 @@
         "asw_base": 0,
         "asw_max": 0,
         "evasion_base": 39,
-        "evasion_max": 74,
+        "evasion_max": 76,
         "los_base": 17,
-        "los_max": 49
+        "los_max": 51
     },
     "89": {
         "asw_base": 0,
@@ -5201,11 +5201,11 @@
     },
     "558": {
         "asw_base": 32,
-        "asw_max": 72,
+        "asw_max": 73,
         "evasion_base": 50,
         "evasion_max": 89,
         "los_base": 9,
-        "los_max": 46
+        "los_max": 47
     },
     "497": {
         "asw_base": 30,
@@ -5251,7 +5251,7 @@
         "asw_base": 0,
         "asw_max": 0,
         "evasion_base": 42,
-        "evasion_max": 82,
+        "evasion_max": 83,
         "los_base": 30,
         "los_max": 92
     },
